@@ -102,7 +102,7 @@ h1, h2, h3, h4, .font-display {
   overflow: hidden; /* Kunci agar header dan nav bar tetap diam */
 }
 
-/* Pelindung Black Glass Fade Gradient di Belakang Bottom Nav Bar */
+/* Pelindung White Glass Transparan Halus di Belakang Bottom Nav Bar */
 .app-container::after {
   content: '';
   position: fixed;
@@ -111,10 +111,11 @@ h1, h2, h3, h4, .font-display {
   transform: translateX(-50%);
   width: 100%;
   max-width: 460px;
-  height: 115px;
-  background: linear-gradient(to top, var(--md-sys-color-surface) 40%, rgba(17, 19, 24, 0.85) 75%, transparent 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  height: 84px; /* Tinggi presisi pas di area nav bar */
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.08) 25%, rgba(255, 255, 255, 0.02) 75%, transparent 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   pointer-events: none;
   z-index: 900;
 }
@@ -260,7 +261,7 @@ h1, h2, h3, h4, .font-display {
    ========================================================================== */
 .app-content {
   flex: 1;
-  padding: 18px 16px 115px 16px; /* 16px horizontal & 115px bawah agar konten terbawah bisa di-scroll melewati fade layer */
+  padding: 16px 14px 84px 14px; /* Padding presisi dan proporsional terhadap nav bar */
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
@@ -958,26 +959,26 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* ==========================================================================
-   BOTTOM NAVIGATION BAR (PERMANENTLY FIXED FLOATING DOCK)
+   BOTTOM NAVIGATION BAR (WHITE FROSTED GLASS DOCK)
    ========================================================================== */
 .bottom-nav {
   position: fixed;
-  bottom: calc(16px + env(safe-area-inset-bottom));
+  bottom: calc(10px + env(safe-area-inset-bottom));
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 32px);
-  max-width: 428px; /* Selaras dengan container 460px */
-  height: 68px;
-  background: rgba(27, 31, 38, 0.94);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  width: calc(100% - 24px); /* Margin 12px tiap sisi agar lebih pas & kompak */
+  max-width: 436px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.08); /* White glass translucent */
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--md-shape-corner-full);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0 8px;
+  padding: 0 6px;
   z-index: 1000;
 }
 
@@ -991,14 +992,14 @@ h1, h2, h3, h4, .font-display {
   border: none;
   color: var(--md-sys-color-outline);
   cursor: pointer;
-  padding: 6px 0;
+  padding: 4px 0;
   position: relative;
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
 .nav-pill {
-  width: 44px;
-  height: 30px;
+  width: 42px;
+  height: 28px;
   border-radius: var(--md-shape-corner-full);
   display: flex;
   align-items: center;
@@ -1008,36 +1009,36 @@ h1, h2, h3, h4, .font-display {
 }
 
 .nav-pill svg {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   fill: currentColor;
   transition: transform var(--md-motion-duration) var(--md-motion-easing);
 }
 
 .nav-label {
   font-family: var(--font-display);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
 .nav-item.active {
-  color: var(--md-sys-color-primary);
+  color: #ffffff;
 }
 
 .nav-item.active .nav-pill {
-  background: linear-gradient(135deg, rgba(168, 199, 250, 0.22), rgba(168, 199, 250, 0.08));
-  border: 1px solid rgba(168, 199, 250, 0.4);
-  box-shadow: 0 0 12px rgba(168, 199, 250, 0.25);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .nav-item.active .nav-pill svg {
-  fill: var(--md-sys-color-primary);
+  fill: #ffffff;
   transform: translateY(-1px);
 }
 
 .nav-item.active .nav-label {
-  color: var(--md-sys-color-primary);
+  color: #ffffff;
   font-weight: 800;
 }
