@@ -423,7 +423,7 @@ h1, h2, h3, h4, .font-display {
 /* High-Visibility Voucher Input Field with Harmonized 14px Rounded Corners */
 .form-control {
   width: 100%;
-  padding: 13px 84px 13px 44px;
+  padding: 13px 48px 13px 44px;
   background-color: #f8fafc;
   border: 2px solid #e2e8f0;
   border-radius: 14px; /* Disamakan 14px */
@@ -464,29 +464,28 @@ h1, h2, h3, h4, .font-display {
   gap: 4px;
 }
 
-/* Scan QR Button Attached Inside Input with Harmonized Rounded Corners */
+/* Scan QR Icon Button (Compact Icon Only) */
 .btn-scan-qr {
   position: absolute;
   right: 6px;
+  width: 36px;
+  height: 36px;
   background: #fee2e2;
   border: 1px solid #fca5a5;
   color: #dc2626;
   border-radius: 10px;
-  padding: 6px 10px;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  font-weight: 800;
+  padding: 0;
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
   cursor: pointer;
   z-index: 3;
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
 .btn-scan-qr svg {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   fill: #dc2626;
 }
 
