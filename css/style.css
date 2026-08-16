@@ -328,14 +328,52 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* ==========================================================================
-   M3 LOGIN CARD
+   HIGH-CLARITY VOUCHER LOGIN CARD (ZERO FRICTION UX)
    ========================================================================== */
 .login-card {
   background-color: var(--md-sys-color-surface-container);
   border-radius: var(--md-shape-corner-xl);
   padding: 18px 16px;
-  border: 1px solid var(--md-sys-color-outline-variant);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1.5px solid rgba(255, 59, 78, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(255, 59, 78, 0.1);
+  position: relative;
+}
+
+.login-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.login-card-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.login-card-title svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--md-sys-color-primary);
+}
+
+.login-card-badge {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--md-shape-corner-full);
+  background-color: rgba(255, 59, 78, 0.15);
+  color: var(--md-sys-color-primary);
+  border: 1px solid rgba(255, 77, 90, 0.35);
 }
 
 .input-group {
@@ -343,12 +381,15 @@ h1, h2, h3, h4, .font-display {
 }
 
 .input-group label {
-  display: block;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--md-sys-color-on-surface-variant);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--md-sys-color-on-surface);
   margin-bottom: 6px;
+  letter-spacing: 0.01em;
 }
 
 .input-box {
@@ -363,6 +404,7 @@ h1, h2, h3, h4, .font-display {
   color: var(--md-sys-color-outline);
   display: flex;
   pointer-events: none;
+  z-index: 2;
 }
 
 .input-box .input-icon svg {
@@ -371,68 +413,125 @@ h1, h2, h3, h4, .font-display {
   fill: currentColor;
 }
 
+/* High-Visibility Voucher Input Field */
 .form-control {
   width: 100%;
-  padding: 12px 14px 12px 44px;
-  background-color: var(--md-sys-color-surface-container-high);
-  border: 1px solid var(--md-sys-color-outline-variant);
+  padding: 14px 76px 14px 44px;
+  background-color: #0e1014;
+  border: 2px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--md-shape-corner-md);
-  color: var(--md-sys-color-on-surface);
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  font-weight: 500;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   outline: none;
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
 .form-control:focus {
   border-color: var(--md-sys-color-primary);
-  background-color: var(--md-sys-color-surface-container-highest);
-  box-shadow: 0 0 0 2px rgba(168, 199, 250, 0.25);
+  background-color: #15171d;
+  box-shadow: 0 0 0 3px rgba(255, 59, 78, 0.25);
 }
 
 .form-control::placeholder {
-  color: var(--md-sys-color-outline);
+  color: #6c707d;
   font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
+/* Helper Hint Below Input */
+.input-hint {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--md-sys-color-on-surface-variant);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Scan QR Button Attached Inside Input */
+.btn-scan-qr {
+  position: absolute;
+  right: 6px;
+  background: rgba(255, 59, 78, 0.18);
+  border: 1px solid rgba(255, 77, 90, 0.4);
+  color: #ffffff;
+  border-radius: var(--md-shape-corner-sm);
+  padding: 6px 10px;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  z-index: 3;
+  transition: all var(--md-motion-duration) var(--md-motion-easing);
+}
+
+.btn-scan-qr svg {
+  width: 15px;
+  height: 15px;
+  fill: #ff4d5a;
+}
+
+.btn-scan-qr:hover, .btn-scan-qr:active {
+  background: var(--md-sys-color-primary);
+  color: #ffffff;
+}
+
+.btn-scan-qr:hover svg, .btn-scan-qr:active svg {
+  fill: #ffffff;
+}
+
+/* Big Hero Connect Button */
 .btn-primary {
   width: 100%;
-  padding: 13px 18px;
+  padding: 14px 20px;
   border: none;
   border-radius: var(--md-shape-corner-full);
-  background-color: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
+  background: linear-gradient(135deg, #ff2d44, #c9142b);
+  color: #ffffff;
   font-family: var(--font-display);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 800;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  box-shadow: 0 4px 18px rgba(230, 30, 56, 0.4);
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
 .btn-primary svg {
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
   fill: currentColor;
 }
 
 .btn-primary:hover, .btn-primary:active {
-  background-color: #bad3fb;
+  background: linear-gradient(135deg, #ff4358, #da1a32);
   transform: scale(0.99);
+  box-shadow: 0 6px 22px rgba(230, 30, 56, 0.55);
 }
 
 .btn-trial {
   width: 100%;
   margin-top: 10px;
   padding: 11px 16px;
-  background-color: var(--md-sys-color-tertiary-container);
-  color: var(--md-sys-color-on-tertiary-container);
-  border: none;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--md-shape-corner-full);
   font-family: var(--font-display);
   font-size: 0.82rem;
@@ -454,7 +553,8 @@ h1, h2, h3, h4, .font-display {
 }
 
 .btn-trial:hover {
-  filter: brightness(1.15);
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .alert-error {

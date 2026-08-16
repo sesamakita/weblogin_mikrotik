@@ -272,6 +272,9 @@ function initLoginModeSwitcher() {
   const inputUsername = document.getElementById('inputUsername');
   const inputPassword = document.getElementById('inputPassword');
   const labelUsername = document.getElementById('labelUsername');
+  const titleCardLogin = document.getElementById('titleCardLogin');
+  const hintUsername = document.getElementById('hintUsername');
+  const btnScanQrInput = document.getElementById('btnScanQrInput');
 
   if (!btnVoucher || !btnMember) return;
 
@@ -279,9 +282,12 @@ function initLoginModeSwitcher() {
     btnVoucher.classList.add('active');
     btnMember.classList.remove('active');
     if (groupPassword) groupPassword.style.display = 'none';
-    if (labelUsername) labelUsername.textContent = 'Kode Voucher';
+    if (titleCardLogin) titleCardLogin.textContent = 'MASUKKAN KODE VOUCHER';
+    if (labelUsername) labelUsername.innerHTML = '<span>KODE VOUCHER</span><span style="font-size: 0.68rem; color: var(--md-sys-color-primary); font-weight: 800;">* Wajib Diisi</span>';
+    if (hintUsername) hintUsername.textContent = '💡 Ketik kode yang ada di struk / gesek kartu voucher Anda';
+    if (btnScanQrInput) btnScanQrInput.style.display = 'flex';
     if (inputUsername) {
-      inputUsername.placeholder = 'Masukkan Kode Voucher...';
+      inputUsername.placeholder = 'CONTOH: VCR8821';
       inputUsername.focus();
     }
   });
@@ -290,7 +296,10 @@ function initLoginModeSwitcher() {
     btnMember.classList.add('active');
     btnVoucher.classList.remove('active');
     if (groupPassword) groupPassword.style.display = 'block';
-    if (labelUsername) labelUsername.textContent = 'Username';
+    if (titleCardLogin) titleCardLogin.textContent = 'MASUKKAN AKUN MEMBER';
+    if (labelUsername) labelUsername.innerHTML = '<span>USERNAME MEMBER</span><span style="font-size: 0.68rem; color: var(--md-sys-color-primary); font-weight: 800;">* Wajib Diisi</span>';
+    if (hintUsername) hintUsername.textContent = '💡 Masukkan username langganan bulanan dari admin';
+    if (btnScanQrInput) btnScanQrInput.style.display = 'none';
     if (inputUsername) {
       inputUsername.placeholder = 'Masukkan Username Member...';
       inputUsername.focus();
