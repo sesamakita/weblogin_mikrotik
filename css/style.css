@@ -261,7 +261,7 @@ h1, h2, h3, h4, .font-display {
    ========================================================================== */
 .app-content {
   flex: 1;
-  padding: 16px 14px 84px 14px; /* Padding presisi dan proporsional terhadap nav bar */
+  padding: 16px 14px 110px 14px; /* 110px bawah memberikan jarak lega yang pas di atas floating nav bar */
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
@@ -675,41 +675,6 @@ h1, h2, h3, h4, .font-display {
   color: var(--md-sys-color-outline);
   font-size: 0.72rem;
   margin-top: -10px;
-}
-
-/* 4. Network Status & Info Row */
-.network-health-bar {
-  margin-top: 12px;
-  background-color: var(--md-sys-color-surface-container);
-  border-radius: var(--md-shape-corner-lg);
-  padding: 9px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid var(--md-sys-color-outline-variant);
-}
-
-.net-health-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--md-sys-color-on-surface);
-}
-
-.net-health-item svg {
-  width: 13px;
-  height: 13px;
-  fill: var(--md-sys-color-primary);
-}
-
-.net-health-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--md-sys-color-tertiary);
 }
 
 /* QR Code Scan Camera Button in Voucher Input */
