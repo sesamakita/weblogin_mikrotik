@@ -556,6 +556,25 @@ h1, h2, h3, h4, .font-display {
   box-shadow: 0 4px 16px rgba(220, 30, 50, 0.2);
 }
 
+/* Card Banner Gambar Kustom (assets/banner.jpg) */
+.banner-card {
+  margin-top: 12px;
+  width: 100%;
+  border-radius: var(--md-shape-corner-xl);
+  overflow: hidden;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  display: block;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  display: block;
+}
+
 .promo-badge-tag {
   display: inline-flex;
   align-items: center;
