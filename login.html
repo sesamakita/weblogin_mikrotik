@@ -245,25 +245,26 @@
 
   </div>
 
-  <!-- Scripts -->
-  <script src="js/config.js"></script>
-  <script src="md5.js"></script>
-  $(if chap-id)
-  <form name="login" action="$(link-login-only)" method="post" style="display:none">
-    <input type="hidden" name="username" />
-    <input type="hidden" name="password" />
-    <input type="hidden" name="dst" value="$(link-orig)" />
-    <input type="hidden" name="popup" value="true" />
-  </form>
-  <script>
-    function doLogin() {
-      document.login.username.value = document.sendin.username.value;
-      document.login.password.value = hex_md5('$(chap-id)' + document.sendin.password.value + '$(chap-challenge)');
-      document.login.submit();
-      return false;
-    }
-  </script>
-  $(endif)
+  <!-- MikroTik CHAP Login Form & Script (Hidden from Viewport) -->
+  <div style="display: none;">
+    $(if chap-id)
+    <form name="login" action="$(link-login-only)" method="post">
+      <input type="hidden" name="username" />
+      <input type="hidden" name="password" />
+      <input type="hidden" name="dst" value="$(link-orig)" />
+      <input type="hidden" name="popup" value="true" />
+    </form>
+    <script>
+      function doLogin() {
+        document.login.username.value = document.sendin.username.value;
+        document.login.password.value = hex_md5('$(chap-id)' + document.sendin.password.value + '$(chap-challenge)');
+        document.login.submit();
+        return false;
+      }
+    </script>
+    $(endif)
+  </div>
+
   <script src="js/app.js"></script>
 </body>
 </html>

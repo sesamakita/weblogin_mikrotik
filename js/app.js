@@ -1,13 +1,34 @@
-/**
- * LOGIKA APLIKASI WEB LOGIN HOTSPOT MIKROTIK (VANILLA JS - NO DEPENDENCIES)
- */
-
 document.addEventListener('DOMContentLoaded', () => {
+  cleanupPreviewTags();
   initAppConfig();
   initTabNavigation();
   initLoginModeSwitcher();
   initFaqAccordion();
 });
+
+/**
+ * Pembersih tag MikroTik mentah jika dibuka di peramban web biasa / Vercel
+ */
+function cleanupPreviewTags() {
+  // Sembunyikan alert error jika $(error) belum diproses RouterOS
+  const errorEl = document.querySelector('.alert-error');
+  if (errorEl && (errorEl.textContent.includes('$(error)') || errorEl.textContent.trim() === '')) {
+    errorEl.style.display = 'none';
+  }
+
+  // Bersihkan teks node $(if ...) atau $(endif) yang tersisa di body
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (node.nodeValue) {
+      if (node.nodeValue.includes('$(if') || node.nodeValue.includes('$(endif)')) {
+        node.nodeValue = node.nodeValue.replace(/\$\(if[^\)]*\)/g, '').replace(/\$\(endif\)/g, '').trim();
+      }
+      if (node.nodeValue === '$(ip)') node.nodeValue = '192.168.88.10';
+      if (node.nodeValue === '$(mac)') node.nodeValue = 'A4:C3:F0:88:12:34';
+    }
+  }
+}
 
 /**
  * 1. Inisialisasi Data dari config.js
