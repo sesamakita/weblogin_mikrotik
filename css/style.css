@@ -556,14 +556,15 @@ h1, h2, h3, h4, .font-display {
   box-shadow: 0 4px 16px rgba(220, 30, 50, 0.2);
 }
 
-/* Card Banner Gambar Kustom (assets/banner.jpg) */
+/* Card Banner Gambar Kustom (assets/banner_hut81.jpg) */
 .banner-card {
-  margin-top: 12px;
+  margin-top: 0;
+  margin-bottom: 12px;
   width: 100%;
   border-radius: var(--md-shape-corner-xl);
   overflow: hidden;
-  border: 1px solid var(--md-sys-color-outline-variant);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 77, 90, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 10px rgba(255, 59, 78, 0.15);
   display: block;
 }
 
