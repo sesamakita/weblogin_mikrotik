@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="1; url=$(link-redirect)">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mengarahkan...</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    function startRedirect() {
+      location.href = '$(link-redirect)';
+    }
+  </script>
+</head>
+<body onload="startRedirect()">
+  <div class="app-container" style="justify-content: center; align-items: center; text-align: center; padding: 24px;">
+    <div class="login-card" style="width: 100%; text-align: center; padding: 32px 20px;">
+      <div class="status-dot" style="width: 16px; height: 16px; margin: 0 auto 16px auto;"></div>
+      <h2 style="font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 8px;">Login Berhasil!</h2>
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 20px;">Sedang mengalihkan ke halaman tujuan...</p>
+      <a href="$(link-redirect)" class="btn-primary" style="text-decoration: none; justify-content: center;">
+        Klik Jika Tidak Teralihkan
+      </a>
+    </div>
+  </div>
+</body>
+</html>

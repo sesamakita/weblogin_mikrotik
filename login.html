@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="-1">
+  <title>Login Hotspot - NetSpeed Internet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- App Shell Container (Material You Surface) -->
+  <div class="app-container">
+
+    <!-- Top App Bar / Header -->
+    <header class="app-header">
+      <div class="header-top">
+        <div class="brand-info">
+          <div class="brand-logo">
+            <!-- Modern Wi-Fi Hotspot Icon -->
+            <svg viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4zm0 3.5c3.53 0 6.77 1.34 9.24 3.56L12 19.8 2.76 11.06C5.23 8.84 8.47 7.5 12 7.5z"/></svg>
+          </div>
+          <div>
+            <div class="brand-title" id="brandName">NETSPEED HOTSPOT</div>
+            <div class="brand-subtitle" id="brandTagline">Internet Super Cepat & Stabil</div>
+          </div>
+        </div>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span>Online</span>
+        </div>
+      </div>
+
+      <!-- Material Tonal Announcement Ticker -->
+      <div class="marquee-wrapper">
+        <div class="marquee-icon">
+          <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+        </div>
+        <div class="marquee-content">
+          <span class="marquee-text" id="runningText">⚡ Selamat datang di NetSpeed Hotspot! Beli voucher dan nikmati koneksi internet cepat.</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Dynamic Tab Content -->
+    <main class="app-content">
+
+      <!-- ==========================================
+           TAB 1: FORM LOGIN
+           ========================================== -->
+      <section id="tab-login" class="tab-pane active">
+
+        <!-- M3 Segmented Button Switcher (Voucher vs Member) -->
+        <div class="mode-switch">
+          <button type="button" class="mode-btn active" id="btnModeVoucher">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1v-1c1.1 0 2-.9 2-2s-.9-2-2-2v-1c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v1c-1.1 0-2 .9-2 2s.9 2 2 2v1c0 .55-.45 1-1 1zm-8-7h2v2h-2zm0-3h2v2h-2z"/></svg>
+            Kode Voucher
+          </button>
+          <button type="button" class="mode-btn" id="btnModeMember">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            Member Bulanan
+          </button>
+        </div>
+
+        <!-- MikroTik Error Message -->
+        $(if error)
+        <div class="alert-error">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <div>$(error)</div>
+        </div>
+        $(endif)
+
+        <!-- Login Form Card -->
+        <div class="login-card">
+          <!-- MikroTik Native Hotspot Form -->
+          <form name="sendin" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+            <input type="hidden" name="dst" value="$(link-orig)">
+            <input type="hidden" name="popup" value="true">
+
+            <!-- Input Username / Voucher -->
+            <div class="input-group">
+              <label id="labelUsername" for="inputUsername">Kode Voucher</label>
+              <div class="input-box">
+                <span class="input-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+                </span>
+                <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Masukkan Kode Voucher..." autocomplete="off" required value="$(username)">
+              </div>
+            </div>
+
+            <!-- Input Password (Hidden by default in Voucher Mode) -->
+            <div class="input-group" id="groupPassword" style="display: none;">
+              <label for="inputPassword">Password</label>
+              <div class="input-box">
+                <span class="input-icon">
+                  <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                </span>
+                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Masukkan Password...">
+              </div>
+            </div>
+
+            <!-- Submit Button (M3 Filled Pill) -->
+            <button type="submit" class="btn-primary" id="btnLogin">
+              <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+              Masuk / Login
+            </button>
+          </form>
+
+          <!-- Free Trial Button (If Enabled on MikroTik) -->
+          $(if trial == 'yes')
+          <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)" class="btn-trial">
+            <svg viewBox="0 0 24 24"><path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"/></svg>
+            Coba Gratis (Free Trial 15 Menit)
+          </a>
+          $(endif)
+        </div>
+
+        <!-- Quick Info Grid -->
+        <div class="quick-info-row">
+          <div class="quick-card">
+            <div class="quick-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v10H4z" fill="none"/><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+            </div>
+            <div class="quick-card-text">
+              <span class="label">IP Address</span>
+              <span class="val">$(ip)</span>
+            </div>
+          </div>
+          <div class="quick-card">
+            <div class="quick-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            </div>
+            <div class="quick-card-text">
+              <span class="label">MAC Address</span>
+              <span class="val">$(mac)</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==========================================
+           TAB 2: DAFTAR PAKET & PRICELIST
+           ========================================== -->
+      <section id="tab-packages" class="tab-pane">
+        <div class="section-header">
+          <div class="section-title">
+            <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+            Pilihan Paket Hotspot
+          </div>
+          <div class="section-desc">Pilih durasi paket sesuai kebutuhan, pesan instan via WhatsApp.</div>
+        </div>
+
+        <!-- Rendered by app.js -->
+        <div class="package-list" id="packageListContainer"></div>
+      </section>
+
+      <!-- ==========================================
+           TAB 3: LOKASI AGEN & OUTLET
+           ========================================== -->
+      <section id="tab-outlets" class="tab-pane">
+        <div class="section-header">
+          <div class="section-title">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z"/></svg>
+            Lokasi Beli Voucher
+          </div>
+          <div class="section-desc">Kunjungi warung atau konter mitra kami terdekat berikut ini.</div>
+        </div>
+
+        <!-- Rendered by app.js -->
+        <div class="outlet-list" id="outletListContainer"></div>
+      </section>
+
+      <!-- ==========================================
+           TAB 4: BANTUAN & CS
+           ========================================== -->
+      <section id="tab-help" class="tab-pane">
+        <!-- Customer Service Banner -->
+        <div class="cs-card">
+          <h3>Butuh Bantuan Cepat?</h3>
+          <p>Admin teknis kami siap membantu jika Anda mengalami kendala saat login atau koneksi terputus.</p>
+          <div class="cs-actions">
+            <a href="#" id="csWaBtn" class="btn-cs wa" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+              WhatsApp CS
+            </a>
+            <a href="#" id="csTgBtn" class="btn-cs tg" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+              Telegram
+            </a>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <div class="section-title">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+            Pertanyaan Umum (FAQ)
+          </div>
+        </div>
+
+        <!-- Rendered by app.js -->
+        <div class="faq-list" id="faqListContainer"></div>
+      </section>
+
+    </main>
+
+    <!-- Material 3 Navigation Bar with New Specialized Vector Icons -->
+    <nav class="bottom-nav">
+      <!-- 1. Login: Access Key / Portal -->
+      <button type="button" class="nav-item active" data-tab="tab-login">
+        <span class="nav-pill">
+          <svg viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+        </span>
+        <span class="nav-label">Login</span>
+      </button>
+
+      <!-- 2. Paket: Lightning Speed / Kuota -->
+      <button type="button" class="nav-item" data-tab="tab-packages">
+        <span class="nav-pill">
+          <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+        </span>
+        <span class="nav-label">Paket</span>
+      </button>
+
+      <!-- 3. Agen: Storefront / Konter Outlet -->
+      <button type="button" class="nav-item" data-tab="tab-outlets">
+        <span class="nav-pill">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z"/></svg>
+        </span>
+        <span class="nav-label">Agen</span>
+      </button>
+
+      <!-- 4. Bantuan: Customer Support Headset -->
+      <button type="button" class="nav-item" data-tab="tab-help">
+        <span class="nav-pill">
+          <svg viewBox="0 0 24 24"><path d="M12 1a9 9 0 0 0-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7a9 9 0 0 0-9-9z"/></svg>
+        </span>
+        <span class="nav-label">Bantuan</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="md5.js"></script>
+  $(if chap-id)
+  <form name="login" action="$(link-login-only)" method="post" style="display:none">
+    <input type="hidden" name="username" />
+    <input type="hidden" name="password" />
+    <input type="hidden" name="dst" value="$(link-orig)" />
+    <input type="hidden" name="popup" value="true" />
+  </form>
+  <script>
+    function doLogin() {
+      document.login.username.value = document.sendin.username.value;
+      document.login.password.value = hex_md5('$(chap-id)' + document.sendin.password.value + '$(chap-challenge)');
+      document.login.submit();
+      return false;
+    }
+  </script>
+  $(endif)
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="-1">
+  <title>Logout Berhasil - NetSpeed Hotspot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- App Shell Container (Material You Surface) -->
+  <div class="app-container" style="padding-bottom: 24px;">
+
+    <!-- Top Header Bar -->
+    <header class="app-header">
+      <div class="header-top">
+        <div class="brand-info">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4zm0 3.5c3.53 0 6.77 1.34 9.24 3.56L12 19.8 2.76 11.06C5.23 8.84 8.47 7.5 12 7.5z"/></svg>
+          </div>
+          <div>
+            <div class="brand-title" id="brandName">NETSPEED HOTSPOT</div>
+            <div class="brand-subtitle">Sesi Selesai</div>
+          </div>
+        </div>
+        <div class="status-badge" style="background-color: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container);">
+          <span class="status-dot" style="background-color: var(--md-sys-color-error);"></span>
+          <span>Terputus</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-content">
+
+      <!-- M3 Disconnect Card -->
+      <div class="user-badge-header">
+        <div class="user-avatar" style="background-color: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container);">
+          <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+        </div>
+        <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--md-sys-color-on-surface);">Anda Telah Logout</h2>
+        <div style="font-size: 0.82rem; color: var(--md-sys-color-on-surface-variant); margin-top: 4px;">Terima kasih telah menggunakan layanan internet kami.</div>
+      </div>
+
+      <!-- M3 Ringkasan Penggunaan -->
+      <div class="login-card" style="margin-bottom: 20px;">
+        <div style="font-size: 0.88rem; font-weight: 700; color: var(--md-sys-color-on-surface); margin-bottom: 12px;">Ringkasan Penggunaan</div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
+          <span style="color: var(--md-sys-color-on-surface-variant);">Username Akun</span>
+          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;">$(username)</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
+          <span style="color: var(--md-sys-color-on-surface-variant);">Durasi Terhubung</span>
+          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;">$(uptime)</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
+          <span style="color: var(--md-sys-color-on-surface-variant);">Total Download</span>
+          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;">$(bytes-in-nice)</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0;">
+          <span style="color: var(--md-sys-color-on-surface-variant);">Total Upload</span>
+          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;">$(bytes-out-nice)</span>
+        </div>
+      </div>
+
+      <!-- Tombol Login Kembali (M3 Pill) -->
+      <a href="$(link-login)" class="btn-primary" style="text-decoration: none; justify-content: center;">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        Login Kembali ke Jaringan
+      </a>
+
+    </main>
+
+  </div>
+
+  <script src="js/config.js"></script>
+  <script>
+    if (typeof HOTSPOT_CONFIG !== 'undefined') {
+      const brandNameEl = document.getElementById('brandName');
+      if (brandNameEl) brandNameEl.textContent = HOTSPOT_CONFIG.brand.name || 'NETSPEED HOTSPOT';
+    }
+  </script>
+</body>
+</html>

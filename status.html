@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="-1">
+  <title>Status Koneksi - NetSpeed Hotspot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    $(if advert-pending == 'yes')
+      var popup = '';
+      function focusAdvert() {
+        if (window.focus) popup.focus();
+      }
+      function openAdvert() {
+        popup = open('$(link-advert)', 'hotspot_advert', '');
+        setTimeout("focusAdvert()", 1000);
+      }
+      window.onload = openAdvert;
+    $(endif)
+  </script>
+</head>
+<body>
+
+  <!-- App Shell Container (Material You Surface) -->
+  <div class="app-container" style="padding-bottom: 24px;">
+
+    <!-- Top Header Bar -->
+    <header class="app-header">
+      <div class="header-top">
+        <div class="brand-info">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4zm0 3.5c3.53 0 6.77 1.34 9.24 3.56L12 19.8 2.76 11.06C5.23 8.84 8.47 7.5 12 7.5z"/></svg>
+          </div>
+          <div>
+            <div class="brand-title" id="brandName">NETSPEED HOTSPOT</div>
+            <div class="brand-subtitle">Status Akun Pelanggan</div>
+          </div>
+        </div>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span>Terhubung</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-content">
+
+      <!-- M3 User Greeting Card -->
+      <div class="user-badge-header">
+        <div class="user-avatar">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--md-sys-color-on-surface);">Selamat Datang!</h2>
+        <div style="font-size: 0.9rem; color: var(--md-sys-color-primary); font-weight: 700; margin-top: 2px;">$(username)</div>
+      </div>
+
+      <!-- M3 Stats Grid -->
+      <div class="stats-grid">
+        <!-- Sisa Waktu -->
+        <div class="stat-box">
+          <div class="stat-label">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            Sisa Waktu
+          </div>
+          <div class="stat-val">$(if session-time-left)$(session-time-left)$(else)Unlimited$(endif)</div>
+        </div>
+
+        <!-- Sisa Kuota -->
+        <div class="stat-box">
+          <div class="stat-label">
+            <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+            Sisa Kuota
+          </div>
+          <div class="stat-val">$(if remain-bytes-total-nice)$(remain-bytes-total-nice)$(else)Unlimited$(endif)</div>
+        </div>
+
+        <!-- Waktu Aktif (Uptime) -->
+        <div class="stat-box">
+          <div class="stat-label">
+            <svg viewBox="0 0 24 24"><path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"/></svg>
+            Uptime
+          </div>
+          <div class="stat-val">$(uptime)</div>
+        </div>
+
+        <!-- Total Download / Upload -->
+        <div class="stat-box">
+          <div class="stat-label">
+            <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+            Traffic (In/Out)
+          </div>
+          <div class="stat-val" style="font-size: 0.85rem;">$(bytes-in-nice) / $(bytes-out-nice)</div>
+        </div>
+      </div>
+
+      <!-- M3 Info Tile -->
+      <div class="login-card" style="margin-bottom: 20px;">
+        <div style="font-size: 0.88rem; font-weight: 700; color: var(--md-sys-color-on-surface); margin-bottom: 12px;">Detail Jaringan</div>
+        
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
+          <span style="color: var(--md-sys-color-on-surface-variant);">IP Address</span>
+          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;">$(ip)</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
+          <span style="color: var(--md-sys-color-on-surface-variant);">MAC Address</span>
+          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;">$(mac)</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0;">
+          <span style="color: var(--md-sys-color-on-surface-variant);">Status Sesi</span>
+          <span style="color: var(--md-sys-color-tertiary); font-weight: 700;">Aktif Terhubung</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons (M3 Pill Shapes) -->
+      <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+        <button type="submit" class="btn-danger">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+          Putuskan Koneksi (Logout)
+        </button>
+      </form>
+
+      <div style="margin-top: 12px;">
+        <a href="$(link-status)" class="btn-trial" style="justify-content: center; text-align: center;">
+          <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+          Segarkan / Refresh Status
+        </a>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="js/config.js"></script>
+  <script>
+    if (typeof HOTSPOT_CONFIG !== 'undefined') {
+      const brandNameEl = document.getElementById('brandName');
+      if (brandNameEl) brandNameEl.textContent = HOTSPOT_CONFIG.brand.name || 'NETSPEED HOTSPOT';
+    }
+  </script>
+</body>
+</html>
