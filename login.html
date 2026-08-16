@@ -59,27 +59,7 @@
           <img src="assets/banner_hut81.jpg" alt="Dirgahayu Republik Indonesia Ke-81" class="banner-img" loading="eager">
         </div>
 
-        <!-- M3 Segmented Button Switcher (Voucher vs Member) -->
-        <div class="mode-switch">
-          <button type="button" class="mode-btn active" id="btnModeVoucher">
-            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1v-1c1.1 0 2-.9 2-2s-.9-2-2-2v-1c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v1c-1.1 0-2 .9-2 2s.9 2 2 2v1c0 .55-.45 1-1 1zm-8-7h2v2h-2zm0-3h2v2h-2z"/></svg>
-            Kode Voucher
-          </button>
-          <button type="button" class="mode-btn" id="btnModeMember">
-            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            Member Bulanan
-          </button>
-        </div>
-
-        <!-- MikroTik Error Message -->
-        $(if error)
-        <div class="alert-error">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-          <div>$(error)</div>
-        </div>
-        $(endif)
-
-        <!-- Login Form Card (High-Clarity Zero Friction UX) -->
+        <!-- Login Form Card (White Theme - Matches Banner with Harmonized 14px Rounded Corners) -->
         <div class="login-card">
 
           <!-- Card Header Indicator -->
@@ -91,6 +71,26 @@
             <span class="login-card-badge" id="badgeCardLogin">Akses Cepat</span>
           </div>
 
+          <!-- M3 Segmented Button Switcher (Voucher vs Member) -->
+          <div class="mode-switch">
+            <button type="button" class="mode-btn active" id="btnModeVoucher">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1v-1c1.1 0 2-.9 2-2s-.9-2-2-2v-1c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v1c-1.1 0-2 .9-2 2s.9 2 2 2v1c0 .55-.45 1-1 1zm-8-7h2v2h-2zm0-3h2v2h-2z"/></svg>
+              Kode Voucher
+            </button>
+            <button type="button" class="mode-btn" id="btnModeMember">
+              <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              Member Bulanan
+            </button>
+          </div>
+
+          <!-- MikroTik Error Message -->
+          $(if error)
+          <div class="alert-error">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            <div>$(error)</div>
+          </div>
+          $(endif)
+
           <!-- MikroTik Native Hotspot Form -->
           <form name="sendin" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
             <input type="hidden" name="dst" value="$(link-orig)">
@@ -100,7 +100,7 @@
             <div class="input-group">
               <label id="labelUsername" for="inputUsername">
                 <span>KODE VOUCHER</span>
-                <span style="font-size: 0.68rem; color: var(--md-sys-color-primary); font-weight: 800;">* Wajib Diisi</span>
+                <span class="badge-required">* Wajib Diisi</span>
               </label>
               <div class="input-box">
                 <span class="input-icon">
@@ -119,7 +119,7 @@
             <div class="input-group" id="groupPassword" style="display: none;">
               <label for="inputPassword">
                 <span>PASSWORD MEMBER</span>
-                <span style="font-size: 0.68rem; color: var(--md-sys-color-primary); font-weight: 800;">* Wajib Diisi</span>
+                <span class="badge-required">* Wajib Diisi</span>
               </label>
               <div class="input-box">
                 <span class="input-icon">

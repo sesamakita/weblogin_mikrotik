@@ -290,11 +290,11 @@ h1, h2, h3, h4, .font-display {
    ========================================================================== */
 .mode-switch {
   display: flex;
-  background-color: var(--md-sys-color-surface-container);
-  border-radius: var(--md-shape-corner-full);
+  background-color: #f1f4f9;
+  border-radius: 14px;
   padding: 4px;
   margin-bottom: 12px;
-  border: 1px solid var(--md-sys-color-outline-variant);
+  border: 1px solid #e2e8f0;
 }
 
 .mode-btn {
@@ -306,12 +306,12 @@ h1, h2, h3, h4, .font-display {
   padding: 9px 14px;
   border: none;
   background: transparent;
-  color: var(--md-sys-color-on-surface-variant);
+  color: #475569;
   font-family: var(--font-display);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-  border-radius: var(--md-shape-corner-full);
+  border-radius: 10px;
   cursor: pointer;
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
@@ -323,19 +323,20 @@ h1, h2, h3, h4, .font-display {
 }
 
 .mode-btn.active {
-  background-color: var(--md-sys-color-secondary-container);
-  color: var(--md-sys-color-on-secondary-container);
+  background-color: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
 }
 
 /* ==========================================================================
-   HIGH-CLARITY VOUCHER LOGIN CARD (ZERO FRICTION UX)
+   WHITE THEME VOUCHER LOGIN CARD (MATCHES BANNER WHITE BACKGROUND)
    ========================================================================== */
 .login-card {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: #ffffff;
   border-radius: var(--md-shape-corner-xl);
   padding: 18px 16px;
-  border: 1.5px solid rgba(255, 59, 78, 0.35);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(255, 59, 78, 0.1);
+  border: 1.5px solid rgba(220, 38, 38, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 255, 255, 0.12);
   position: relative;
 }
 
@@ -345,7 +346,7 @@ h1, h2, h3, h4, .font-display {
   justify-content: space-between;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .login-card-title {
@@ -356,24 +357,24 @@ h1, h2, h3, h4, .font-display {
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.02em;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .login-card-title svg {
   width: 18px;
   height: 18px;
-  fill: var(--md-sys-color-primary);
+  fill: #dc2626;
 }
 
 .login-card-badge {
   font-family: var(--font-display);
   font-size: 0.65rem;
   font-weight: 800;
-  padding: 2px 8px;
-  border-radius: var(--md-shape-corner-full);
-  background-color: rgba(255, 59, 78, 0.15);
-  color: var(--md-sys-color-primary);
-  border: 1px solid rgba(255, 77, 90, 0.35);
+  padding: 3px 8px;
+  border-radius: 14px;
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
 }
 
 .input-group {
@@ -386,10 +387,16 @@ h1, h2, h3, h4, .font-display {
   justify-content: space-between;
   font-family: var(--font-display);
   font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--md-sys-color-on-surface);
+  font-weight: 800;
+  color: #0f172a;
   margin-bottom: 6px;
   letter-spacing: 0.01em;
+}
+
+.badge-required {
+  font-size: 0.68rem;
+  color: #dc2626;
+  font-weight: 800;
 }
 
 .input-box {
@@ -401,7 +408,7 @@ h1, h2, h3, h4, .font-display {
 .input-box .input-icon {
   position: absolute;
   left: 14px;
-  color: var(--md-sys-color-outline);
+  color: #64748b;
   display: flex;
   pointer-events: none;
   z-index: 2;
@@ -413,14 +420,14 @@ h1, h2, h3, h4, .font-display {
   fill: currentColor;
 }
 
-/* High-Visibility Voucher Input Field */
+/* High-Visibility Voucher Input Field with Harmonized 14px Rounded Corners */
 .form-control {
   width: 100%;
-  padding: 14px 76px 14px 44px;
-  background-color: #0e1014;
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--md-shape-corner-md);
-  color: #ffffff;
+  padding: 13px 84px 13px 44px;
+  background-color: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px; /* Disamakan 14px */
+  color: #0f172a;
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 800;
@@ -431,15 +438,15 @@ h1, h2, h3, h4, .font-display {
 }
 
 .form-control:focus {
-  border-color: var(--md-sys-color-primary);
-  background-color: #15171d;
-  box-shadow: 0 0 0 3px rgba(255, 59, 78, 0.25);
+  border-color: #dc2626;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
 }
 
 .form-control::placeholder {
-  color: #6c707d;
+  color: #94a3b8;
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: normal;
   text-transform: none;
@@ -448,22 +455,23 @@ h1, h2, h3, h4, .font-display {
 /* Helper Hint Below Input */
 .input-hint {
   font-family: var(--font-body);
-  font-size: 0.7rem;
-  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #64748b;
   margin-top: 6px;
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-/* Scan QR Button Attached Inside Input */
+/* Scan QR Button Attached Inside Input with Harmonized Rounded Corners */
 .btn-scan-qr {
   position: absolute;
   right: 6px;
-  background: rgba(255, 59, 78, 0.18);
-  border: 1px solid rgba(255, 77, 90, 0.4);
-  color: #ffffff;
-  border-radius: var(--md-shape-corner-sm);
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  border-radius: 10px;
   padding: 6px 10px;
   font-family: var(--font-display);
   font-size: 0.7rem;
@@ -477,30 +485,31 @@ h1, h2, h3, h4, .font-display {
 }
 
 .btn-scan-qr svg {
-  width: 15px;
-  height: 15px;
-  fill: #ff4d5a;
+  width: 14px;
+  height: 14px;
+  fill: #dc2626;
 }
 
 .btn-scan-qr:hover, .btn-scan-qr:active {
-  background: var(--md-sys-color-primary);
+  background: #dc2626;
   color: #ffffff;
+  border-color: #dc2626;
 }
 
 .btn-scan-qr:hover svg, .btn-scan-qr:active svg {
   fill: #ffffff;
 }
 
-/* Big Hero Connect Button */
+/* Big Hero Connect Button with Harmonized 14px Rounded Corners */
 .btn-primary {
   width: 100%;
   padding: 14px 20px;
   border: none;
-  border-radius: var(--md-shape-corner-full);
-  background: linear-gradient(135deg, #ff2d44, #c9142b);
+  border-radius: 14px; /* Disamakan 14px */
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   color: #ffffff;
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -509,30 +518,31 @@ h1, h2, h3, h4, .font-display {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 4px 18px rgba(230, 30, 56, 0.4);
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35);
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
 .btn-primary svg {
-  width: 19px;
-  height: 19px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
 }
 
 .btn-primary:hover, .btn-primary:active {
-  background: linear-gradient(135deg, #ff4358, #da1a32);
+  background: linear-gradient(135deg, #ef4444, #dc2626);
   transform: scale(0.99);
-  box-shadow: 0 6px 22px rgba(230, 30, 56, 0.55);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
 }
 
+/* Free Trial Button with Harmonized 14px Rounded Corners */
 .btn-trial {
   width: 100%;
   margin-top: 10px;
-  padding: 11px 16px;
-  background-color: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--md-shape-corner-full);
+  padding: 12px 16px;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  border-radius: 14px; /* Disamakan 14px */
   font-family: var(--font-display);
   font-size: 0.82rem;
   font-weight: 700;
@@ -549,21 +559,23 @@ h1, h2, h3, h4, .font-display {
 .btn-trial svg {
   width: 16px;
   height: 16px;
-  fill: currentColor;
+  fill: #dc2626;
 }
 
 .btn-trial:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.35);
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
 }
 
 .alert-error {
-  background-color: var(--md-sys-color-error-container);
-  color: var(--md-sys-color-on-error-container);
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
   padding: 12px 14px;
-  border-radius: var(--md-shape-corner-md);
+  border-radius: 14px; /* Disamakan 14px */
   font-family: var(--font-body);
   font-size: 0.82rem;
+  font-weight: 600;
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -574,7 +586,7 @@ h1, h2, h3, h4, .font-display {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  fill: var(--md-sys-color-error);
+  fill: #dc2626;
 }
 
 /* ==========================================================================
