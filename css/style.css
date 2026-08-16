@@ -102,6 +102,23 @@ h1, h2, h3, h4, .font-display {
   overflow: hidden; /* Kunci agar header dan nav bar tetap diam */
 }
 
+/* Pelindung Black Glass Fade Gradient di Belakang Bottom Nav Bar */
+.app-container::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 460px;
+  height: 115px;
+  background: linear-gradient(to top, var(--md-sys-color-surface) 40%, rgba(17, 19, 24, 0.85) 75%, transparent 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+  z-index: 900;
+}
+
 @media (min-width: 481px) {
   html, body {
     overflow: auto;
@@ -243,7 +260,7 @@ h1, h2, h3, h4, .font-display {
    ========================================================================== */
 .app-content {
   flex: 1;
-  padding: 18px 16px 100px 16px; /* 16px horizontal agar simetris presisi dengan header & bottom nav */
+  padding: 18px 16px 115px 16px; /* 16px horizontal & 115px bawah agar konten terbawah bisa di-scroll melewati fade layer */
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
