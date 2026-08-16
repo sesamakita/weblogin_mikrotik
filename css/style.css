@@ -288,7 +288,7 @@ h1, h2, h3, h4, .font-display {
   background-color: var(--md-sys-color-surface-container);
   border-radius: var(--md-shape-corner-full);
   padding: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   border: 1px solid var(--md-sys-color-outline-variant);
 }
 
@@ -298,12 +298,12 @@ h1, h2, h3, h4, .font-display {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 16px;
+  padding: 9px 14px;
   border: none;
   background: transparent;
   color: var(--md-sys-color-on-surface-variant);
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   border-radius: var(--md-shape-corner-full);
@@ -312,8 +312,8 @@ h1, h2, h3, h4, .font-display {
 }
 
 .mode-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   fill: currentColor;
 }
 
@@ -328,21 +328,22 @@ h1, h2, h3, h4, .font-display {
 .login-card {
   background-color: var(--md-sys-color-surface-container);
   border-radius: var(--md-shape-corner-xl);
-  padding: 24px 20px;
+  padding: 18px 16px;
+  border: 1px solid var(--md-sys-color-outline-variant);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .input-group {
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .input-group label {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--md-sys-color-on-surface-variant);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .input-box {
@@ -353,27 +354,27 @@ h1, h2, h3, h4, .font-display {
 
 .input-box .input-icon {
   position: absolute;
-  left: 16px;
+  left: 14px;
   color: var(--md-sys-color-outline);
   display: flex;
   pointer-events: none;
 }
 
 .input-box .input-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
 }
 
 .form-control {
   width: 100%;
-  padding: 14px 16px 14px 48px;
+  padding: 12px 14px 12px 44px;
   background-color: var(--md-sys-color-surface-container-high);
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-shape-corner-md);
   color: var(--md-sys-color-on-surface);
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 500;
   outline: none;
   transition: all var(--md-motion-duration) var(--md-motion-easing);
@@ -392,13 +393,13 @@ h1, h2, h3, h4, .font-display {
 
 .btn-primary {
   width: 100%;
-  padding: 14px 20px;
+  padding: 13px 18px;
   border: none;
   border-radius: var(--md-shape-corner-full);
   background-color: var(--md-sys-color-primary);
   color: var(--md-sys-color-on-primary);
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 800;
   letter-spacing: -0.01em;
   cursor: pointer;
@@ -410,8 +411,8 @@ h1, h2, h3, h4, .font-display {
 }
 
 .btn-primary svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
 }
 
@@ -422,28 +423,28 @@ h1, h2, h3, h4, .font-display {
 
 .btn-trial {
   width: 100%;
-  margin-top: 12px;
-  padding: 12px 18px;
+  margin-top: 10px;
+  padding: 11px 16px;
   background-color: var(--md-sys-color-tertiary-container);
   color: var(--md-sys-color-on-tertiary-container);
   border: none;
   border-radius: var(--md-shape-corner-full);
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   text-decoration: none;
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
 .btn-trial svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   fill: currentColor;
 }
 
@@ -454,25 +455,25 @@ h1, h2, h3, h4, .font-display {
 .alert-error {
   background-color: var(--md-sys-color-error-container);
   color: var(--md-sys-color-on-error-container);
-  padding: 14px 16px;
-  border-radius: var(--md-shape-corner-lg);
+  padding: 12px 14px;
+  border-radius: var(--md-shape-corner-md);
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 18px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .alert-error svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
   fill: var(--md-sys-color-error);
 }
 
 /* ==========================================================================
-   WIDGET HALAMAN DEPAN TAMBAHAN (FITUR LENGKAP & INTERAKTIF)
+   WIDGET HALAMAN DEPAN TAMBAHAN (RITME JARAK PRESISI & HARMONIS)
    ========================================================================== */
 
 /* 1. Quick Action Shortcuts (Grid 4 Ikon) */
@@ -480,7 +481,7 @@ h1, h2, h3, h4, .font-display {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .action-item {
@@ -492,7 +493,7 @@ h1, h2, h3, h4, .font-display {
   background-color: var(--md-sys-color-surface-container);
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-shape-corner-lg);
-  padding: 12px 6px;
+  padding: 10px 4px;
   cursor: pointer;
   text-decoration: none;
   color: var(--md-sys-color-on-surface);
@@ -506,8 +507,8 @@ h1, h2, h3, h4, .font-display {
 }
 
 .action-icon {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--md-shape-corner-md);
   display: flex;
   align-items: center;
@@ -521,8 +522,8 @@ h1, h2, h3, h4, .font-display {
 .action-icon.cs    { background: rgba(37, 211, 102, 0.15); color: #25d366; }
 
 .action-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   fill: currentColor;
 }
 
@@ -536,11 +537,11 @@ h1, h2, h3, h4, .font-display {
 
 /* 2. Featured Promo Banner Card */
 .featured-promo-card {
-  margin-top: 16px;
-  background: linear-gradient(135deg, rgba(8, 66, 130, 0.4), rgba(0, 82, 43, 0.3));
+  margin-top: 12px;
+  background: linear-gradient(135deg, rgba(8, 66, 130, 0.45), rgba(0, 82, 43, 0.35));
   border: 1px solid rgba(168, 199, 250, 0.3);
   border-radius: var(--md-shape-corner-xl);
-  padding: 16px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -565,21 +566,21 @@ h1, h2, h3, h4, .font-display {
 
 .promo-title {
   font-family: var(--font-display);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 800;
   color: #ffffff;
 }
 
 .promo-sub {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   color: var(--md-sys-color-on-surface-variant);
   margin-top: 2px;
 }
 
 .promo-price {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--md-sys-color-primary);
 }
@@ -608,27 +609,27 @@ h1, h2, h3, h4, .font-display {
 
 /* 3. 3-Step Mini Guide Card */
 .step-guide-card {
-  margin-top: 16px;
+  margin-top: 12px;
   background-color: var(--md-sys-color-surface-container);
   border-radius: var(--md-shape-corner-xl);
-  padding: 16px;
+  padding: 14px 16px;
   border: 1px solid var(--md-sys-color-outline-variant);
 }
 
 .step-guide-title {
   font-family: var(--font-display);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 800;
   color: var(--md-sys-color-on-surface);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
 .step-guide-title svg {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   fill: var(--md-sys-color-primary);
 }
 
@@ -649,13 +650,13 @@ h1, h2, h3, h4, .font-display {
 }
 
 .step-num {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background-color: var(--md-sys-color-secondary-container);
   color: var(--md-sys-color-on-secondary-container);
   font-family: var(--font-display);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -664,24 +665,24 @@ h1, h2, h3, h4, .font-display {
 
 .step-text {
   font-family: var(--font-body);
-  font-size: 0.68rem;
+  font-size: 0.67rem;
   font-weight: 600;
   color: var(--md-sys-color-on-surface-variant);
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .step-arrow {
   color: var(--md-sys-color-outline);
-  font-size: 0.75rem;
-  margin-top: -12px;
+  font-size: 0.72rem;
+  margin-top: -10px;
 }
 
 /* 4. Network Status & Info Row */
 .network-health-bar {
-  margin-top: 16px;
+  margin-top: 12px;
   background-color: var(--md-sys-color-surface-container);
   border-radius: var(--md-shape-corner-lg);
-  padding: 10px 14px;
+  padding: 9px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -691,16 +692,16 @@ h1, h2, h3, h4, .font-display {
 .net-health-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   font-family: var(--font-display);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--md-sys-color-on-surface);
 }
 
 .net-health-item svg {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   fill: var(--md-sys-color-primary);
 }
 
@@ -714,14 +715,14 @@ h1, h2, h3, h4, .font-display {
 /* QR Code Scan Camera Button in Voucher Input */
 .btn-scan-qr {
   position: absolute;
-  right: 8px;
+  right: 6px;
   background: rgba(168, 199, 250, 0.15);
   border: 1px solid rgba(168, 199, 250, 0.3);
   color: var(--md-sys-color-primary);
   border-radius: var(--md-shape-corner-sm);
-  padding: 6px 10px;
+  padding: 5px 8px;
   font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -731,8 +732,8 @@ h1, h2, h3, h4, .font-display {
 }
 
 .btn-scan-qr svg {
-  width: 15px;
-  height: 15px;
+  width: 14px;
+  height: 14px;
   fill: currentColor;
 }
 
@@ -741,18 +742,27 @@ h1, h2, h3, h4, .font-display {
   color: var(--md-sys-color-on-primary);
 }
 
+/* 5. Quick Info Tiles */
+.quick-info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
 .quick-card {
   background-color: var(--md-sys-color-surface-container);
   border-radius: var(--md-shape-corner-lg);
-  padding: 12px 14px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  padding: 10px 12px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .quick-card-icon {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: var(--md-shape-corner-sm);
   background-color: var(--md-sys-color-surface-container-highest);
   color: var(--md-sys-color-primary);
@@ -763,21 +773,21 @@ h1, h2, h3, h4, .font-display {
 }
 
 .quick-card-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   fill: currentColor;
 }
 
 .quick-card-text .label {
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--md-sys-color-on-surface-variant);
   display: block;
 }
 
 .quick-card-text .val {
   font-family: var(--font-display);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--md-sys-color-on-surface);
   word-break: break-all;
