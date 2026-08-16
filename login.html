@@ -81,7 +81,7 @@
             <input type="hidden" name="dst" value="$(link-orig)">
             <input type="hidden" name="popup" value="true">
 
-            <!-- Input Username / Voucher -->
+            <!-- Input Username / Voucher with Scan QR Button -->
             <div class="input-group">
               <label id="labelUsername" for="inputUsername">Kode Voucher</label>
               <div class="input-box">
@@ -89,6 +89,10 @@
                   <svg viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
                 </span>
                 <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Masukkan Kode Voucher..." autocomplete="off" required value="$(username)">
+                <button type="button" class="btn-scan-qr" id="btnScanQrInput" title="Scan QR Code Voucher">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h6v6H4V4zm2 2v2h2V6H6zm8-2h6v6h-6V4zm2 2v2h2V6h-2zM4 14h6v6H4v-6zm2 2v2h2v-2H6zm10 0h2v2h-2v-2zm-2-2h2v2h-2v-2zm4 4h2v2h-2v-2zm-2 2h2v2h-2v-2zm-4-2h2v2h-2v-2zm4-4h2v2h-2v-2z"/></svg>
+                  Scan
+                </button>
               </div>
             </div>
 
@@ -119,7 +123,92 @@
           $(endif)
         </div>
 
-        <!-- Quick Info Grid -->
+        <!-- 1. Quick Action Shortcuts (4 Tombol Pintas Cepat) -->
+        <div class="quick-actions-grid">
+          <div class="action-item" id="qaCheckTarif">
+            <div class="action-icon tarif">
+              <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+            </div>
+            <span class="action-label">Cek Tarif</span>
+          </div>
+
+          <div class="action-item" id="qaFindOutlet">
+            <div class="action-icon agen">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z"/></svg>
+            </div>
+            <span class="action-label">Beli Voucher</span>
+          </div>
+
+          <div class="action-item" id="qaScanQr">
+            <div class="action-icon qr">
+              <svg viewBox="0 0 24 24"><path d="M4 4h6v6H4V4zm2 2v2h2V6H6zm8-2h6v6h-6V4zm2 2v2h2V6h-2zM4 14h6v6H4v-6zm2 2v2h2v-2H6zm10 0h2v2h-2v-2zm-2-2h2v2h-2v-2zm4 4h2v2h-2v-2zm-2 2h2v2h-2v-2zm-4-2h2v2h-2v-2zm4-4h2v2h-2v-2z"/></svg>
+            </div>
+            <span class="action-label">Scan QR</span>
+          </div>
+
+          <a href="#" class="action-item" id="qaContactCs" target="_blank">
+            <div class="action-icon cs">
+              <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+            </div>
+            <span class="action-label">Chat Admin</span>
+          </a>
+        </div>
+
+        <!-- 2. Featured Promo Banner Card (Highlight Paket Terlaris) -->
+        <div class="featured-promo-card" id="featuredPromoBox">
+          <div>
+            <span class="promo-badge-tag">🔥 Paling Laris</span>
+            <div class="promo-title">Paket Seharian 24 Jam</div>
+            <div class="promo-sub">Speed Up to 10 Mbps • Unlimited</div>
+            <div class="promo-price">Rp 8.000 <span style="font-size: 0.75rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">/ 24 Jam</span></div>
+          </div>
+          <a href="#" id="featuredPromoBtn" class="btn-promo-buy" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+            Pesan
+          </a>
+        </div>
+
+        <!-- 3. 3-Step Mini Guide Card -->
+        <div class="step-guide-card">
+          <div class="step-guide-title">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            3 Langkah Mudah Terhubung
+          </div>
+          <div class="steps-row">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-text">Beli Voucher di Agen / Online</div>
+            </div>
+            <div class="step-arrow">➔</div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-text">Ketik / Scan Kode Voucher</div>
+            </div>
+            <div class="step-arrow">➔</div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-text">Klik Masuk & Internetan 🚀</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Network Health Status Bar -->
+        <div class="network-health-bar">
+          <div class="net-health-item">
+            <span class="net-health-dot"></span>
+            <span>Server Online</span>
+          </div>
+          <div class="net-health-item">
+            <svg viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/></svg>
+            <span>Fiber Optic</span>
+          </div>
+          <div class="net-health-item">
+            <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+            <span>Low Ping ~10ms</span>
+          </div>
+        </div>
+
+        <!-- 5. Quick Info Grid (IP & MAC) -->
         <div class="quick-info-row">
           <div class="quick-card">
             <div class="quick-card-icon">

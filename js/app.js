@@ -56,18 +56,93 @@ function initAppConfig() {
   // Render FAQ
   renderFaqs(cfg.faqs);
 
-  // Set CS Links
+  // Set CS Links & Quick Actions
   const csWaBtn = document.getElementById('csWaBtn');
   const csTgBtn = document.getElementById('csTgBtn');
+  const qaContactCs = document.getElementById('qaContactCs');
 
-  if (csWaBtn && cfg.brand.csWhatsApp) {
+  if (cfg.brand.csWhatsApp) {
     const waText = encodeURIComponent(`Halo Admin ${cfg.brand.name}, saya butuh bantuan terkait koneksi Hotspot.`);
-    csWaBtn.href = `https://wa.me/${cfg.brand.csWhatsApp}?text=${waText}`;
+    const waUrl = `https://wa.me/${cfg.brand.csWhatsApp}?text=${waText}`;
+    if (csWaBtn) csWaBtn.href = waUrl;
+    if (qaContactCs) qaContactCs.href = waUrl;
   }
 
   if (csTgBtn && cfg.brand.csTelegram) {
     csTgBtn.href = `https://t.me/${cfg.brand.csTelegram}`;
   }
+
+  // Setup Featured Promo WhatsApp Button
+  const featuredPromoBtn = document.getElementById('featuredPromoBtn');
+  if (featuredPromoBtn && cfg.packages && cfg.packages.length > 0) {
+    const popularPkt = cfg.packages.find(p => p.popular) || cfg.packages[0];
+    const waMsg = encodeURIComponent(`Halo Admin ${cfg.brand.name}, saya ingin pesan promo *${popularPkt.name}* (Harga: Rp ${Number(popularPkt.price).toLocaleString('id-ID')}). Mohon infonya ya.`);
+    featuredPromoBtn.href = `https://wa.me/${cfg.brand.csWhatsApp}?text=${waMsg}`;
+  }
+
+  // Setup Quick Action Button Click Listeners
+  initQuickActions();
+}
+
+/**
+ * Handler Tombol Pintas Cepat (Quick Actions) di Halaman Depan
+ */
+function initQuickActions() {
+  const qaTarif = document.getElementById('qaCheckTarif');
+  const qaOutlet = document.getElementById('qaFindOutlet');
+  const qaScan = document.getElementById('qaScanQr');
+  const btnScanQrInput = document.getElementById('btnScanQrInput');
+
+  if (qaTarif) {
+    qaTarif.addEventListener('click', () => switchTab('tab-packages'));
+  }
+
+  if (qaOutlet) {
+    qaOutlet.addEventListener('click', () => switchTab('tab-outlets'));
+  }
+
+  const handleQrScan = () => {
+    const inputUsername = document.getElementById('inputUsername');
+    const scannedCode = prompt('📷 Scan Kamera / Masukkan Kode Barcode Voucher:');
+    if (scannedCode && scannedCode.trim() !== '') {
+      if (inputUsername) {
+        inputUsername.value = scannedCode.trim();
+        const inputPassword = document.getElementById('inputPassword');
+        if (inputPassword) inputPassword.value = scannedCode.trim();
+        inputUsername.focus();
+      }
+    }
+  };
+
+  if (qaScan) qaScan.addEventListener('click', handleQrScan);
+  if (btnScanQrInput) btnScanQrInput.addEventListener('click', handleQrScan);
+}
+
+/**
+ * Helper Fungsi Ganti Tab
+ */
+function switchTab(targetTabId) {
+  const navItems = document.querySelectorAll('.nav-item');
+  const tabPanes = document.querySelectorAll('.tab-pane');
+
+  navItems.forEach(nav => {
+    if (nav.getAttribute('data-tab') === targetTabId) {
+      nav.classList.add('active');
+    } else {
+      nav.classList.remove('active');
+    }
+  });
+
+  tabPanes.forEach(pane => {
+    if (pane.id === targetTabId) {
+      pane.classList.add('active');
+    } else {
+      pane.classList.remove('active');
+    }
+  });
+
+  const content = document.querySelector('.app-content');
+  if (content) content.scrollTop = 0;
 }
 
 /**
@@ -177,29 +252,12 @@ function renderFaqs(faqs) {
  */
 function initTabNavigation() {
   const navItems = document.querySelectorAll('.nav-item');
-  const tabPanes = document.querySelectorAll('.tab-pane');
 
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
       const targetTabId = item.getAttribute('data-tab');
-
-      // Update Nav Items
-      navItems.forEach(nav => nav.classList.remove('active'));
-      item.classList.add('active');
-
-      // Update Tab Panes
-      tabPanes.forEach(pane => {
-        if (pane.id === targetTabId) {
-          pane.classList.add('active');
-        } else {
-          pane.classList.remove('active');
-        }
-      });
-
-      // Scroll top
-      const content = document.querySelector('.app-content');
-      if (content) content.scrollTop = 0;
+      if (targetTabId) switchTab(targetTabId);
     });
   });
 }
