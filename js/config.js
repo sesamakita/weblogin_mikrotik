@@ -5,19 +5,19 @@
 const HOTSPOT_CONFIG = {
   // Informasi Brand & Bisnis
   brand: {
-    name: "NETSPEED HOTSPOT",
-    tagline: "Internet Super Cepat & Stabil",
+    name: "NETSPEED HOTSPOT 🇮🇩",
+    tagline: "Edisi Spesial HUT RI Ke-81",
     logoText: "NetSpeed",
     csWhatsApp: "6281234567890", // Ganti dengan nomor WhatsApp Admin (awali dengan 62)
     csTelegram: "admin_netspeed", // Username Telegram (opsional)
-    runningText: "⚡ Promo Spesial: Beli Paket 24 Jam Gratis 2 Jam! Hubungi Admin jika mengalami kendala login."
+    runningText: "🇮🇩 Dirgahayu Republik Indonesia! Nikmati Promo Merdeka Super Cepat & Kuota Unlimited Sepuasnya! 🇮🇩"
   },
 
   // Daftar Paket Internet Hotspot
   packages: [
     {
       id: "pkt_1",
-      name: "Paket Kilat 2 Jam",
+      name: "Paket Merdeka 2 Jam",
       duration: "2 Jam",
       speed: "Up to 5 Mbps",
       quota: "Unlimited FUP",
@@ -27,9 +27,9 @@ const HOTSPOT_CONFIG = {
     },
     {
       id: "pkt_2",
-      name: "Paket Puas 6 Jam",
+      name: "Paket Pejuang 6 Jam",
       duration: "6 Jam",
-      speed: "Up to 7 Mbps",
+      speed: "Up to 8 Mbps",
       quota: "Unlimited FUP",
       price: 4000,
       popular: false,
@@ -37,19 +37,19 @@ const HOTSPOT_CONFIG = {
     },
     {
       id: "pkt_3",
-      name: "Paket Seharian 24 Jam",
+      name: "Paket Merdeka 24 Jam",
       duration: "24 Jam",
-      speed: "Up to 10 Mbps",
-      quota: "Unlimited Nonstop",
+      speed: "Up to 17 Mbps",
+      quota: "Full Unlimited Nonstop",
       price: 8000,
       popular: true,
-      badge: "Paling Laris 🔥"
+      badge: "🇮🇩 Promo Merdeka"
     },
     {
       id: "pkt_4",
-      name: "Paket Mingguan 7 Hari",
+      name: "Paket Nusantara 7 Hari",
       duration: "7 Hari",
-      speed: "Up to 15 Mbps",
+      speed: "Up to 20 Mbps",
       quota: "Full Unlimited",
       price: 30000,
       popular: false,
@@ -57,9 +57,9 @@ const HOTSPOT_CONFIG = {
     },
     {
       id: "pkt_5",
-      name: "Paket Bulanan 30 Hari",
+      name: "Paket Garuda 30 Hari",
       duration: "30 Hari",
-      speed: "Up to 20 Mbps",
+      speed: "Up to 45 Mbps",
       quota: "Full Unlimited VIP",
       price: 85000,
       popular: false,

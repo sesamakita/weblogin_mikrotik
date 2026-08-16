@@ -12,31 +12,32 @@
   --font-display: 'Plus Jakarta Sans', 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-  /* Material Design 3 Tonal Color System (Dark Theme) */
+  /* Material Design 3 - EDISI SPESIAL KEMERDEKAAN RI 17 AGUSTUS (70% MERAH PUTIH) */
   --md-sys-color-surface: #111318;
   --md-sys-color-surface-dim: #0b0d11;
-  --md-sys-color-surface-container: #1b1f26;
-  --md-sys-color-surface-container-high: #262a33;
-  --md-sys-color-surface-container-highest: #313540;
+  --md-sys-color-surface-container: #1b1e25;
+  --md-sys-color-surface-container-high: #272a33;
+  --md-sys-color-surface-container-highest: #323642;
   
-  --md-sys-color-primary: #a8c7fa;
-  --md-sys-color-on-primary: #043063;
-  --md-sys-color-primary-container: #084282;
-  --md-sys-color-on-primary-container: #d3e3fd;
+  /* Merah Berani & Putih Suci Accents */
+  --md-sys-color-primary: #ff3b4e; /* Merah Indonesia Vibrant */
+  --md-sys-color-on-primary: #ffffff; /* Putih Bersih */
+  --md-sys-color-primary-container: #8b0017; /* Deep Crimson Glass */
+  --md-sys-color-on-primary-container: #ffdad9;
   
-  --md-sys-color-secondary: #c2e7ff;
-  --md-sys-color-secondary-container: #2b3b4f;
-  --md-sys-color-on-secondary-container: #d9e2ee;
+  --md-sys-color-secondary: #ffffff; /* Putih Bersih */
+  --md-sys-color-secondary-container: #441820; /* Merah Transparan Glass */
+  --md-sys-color-on-secondary-container: #ffffff;
   
-  --md-sys-color-tertiary: #6dd58c;
-  --md-sys-color-tertiary-container: #00522b;
-  --md-sys-color-on-tertiary-container: #b6f3c5;
+  --md-sys-color-tertiary: #ff8591;
+  --md-sys-color-tertiary-container: #331318;
+  --md-sys-color-on-tertiary-container: #ffdad9;
   
   --md-sys-color-outline: #8e9099;
   --md-sys-color-outline-variant: #43474e;
   
-  --md-sys-color-on-surface: #e2e2e9;
-  --md-sys-color-on-surface-variant: #c4c6d0;
+  --md-sys-color-on-surface: #f4f4f7;
+  --md-sys-color-on-surface-variant: #c8cad2;
   
   --md-sys-color-error: #f2b8b5;
   --md-sys-color-error-container: #8c1d18;
@@ -197,26 +198,29 @@ h1, h2, h3, h4, .font-display {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: var(--md-sys-color-tertiary-container);
-  color: var(--md-sys-color-on-tertiary-container);
-  padding: 6px 12px;
+  background-color: rgba(255, 59, 78, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 77, 90, 0.35);
+  padding: 5px 10px;
   border-radius: var(--md-shape-corner-full);
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.7rem;
+  font-weight: 800;
   letter-spacing: 0.02em;
 }
 
 .status-dot {
   width: 7px;
   height: 7px;
-  background-color: var(--md-sys-color-tertiary);
+  background-color: var(--md-sys-color-primary);
   border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 59, 78, 0.8);
 }
 
 /* Announcement Banner */
 .marquee-wrapper {
   margin-top: 12px;
-  background-color: var(--md-sys-color-surface-container);
+  background-color: rgba(255, 59, 78, 0.08);
+  border: 1px solid rgba(255, 77, 90, 0.22);
   border-radius: var(--md-shape-corner-md);
   padding: 8px 12px;
   display: flex;
@@ -242,7 +246,8 @@ h1, h2, h3, h4, .font-display {
   overflow: hidden;
   font-family: var(--font-body);
   font-size: 0.75rem;
-  color: var(--md-sys-color-on-surface-variant);
+  color: #f4f4f7;
+  font-weight: 500;
   width: 100%;
 }
 
@@ -516,9 +521,9 @@ h1, h2, h3, h4, .font-display {
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
-.action-icon.tarif { background: rgba(168, 199, 250, 0.15); color: var(--md-sys-color-primary); }
-.action-icon.agen  { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-.action-icon.qr    { background: rgba(109, 213, 140, 0.15); color: var(--md-sys-color-tertiary); }
+.action-icon.tarif { background: rgba(255, 59, 78, 0.15); color: var(--md-sys-color-primary); }
+.action-icon.agen  { background: rgba(255, 255, 255, 0.12); color: #ffffff; }
+.action-icon.qr    { background: rgba(255, 59, 78, 0.15); color: var(--md-sys-color-primary); }
 .action-icon.cs    { background: rgba(37, 211, 102, 0.15); color: #25d366; }
 
 .action-icon svg {
@@ -535,11 +540,11 @@ h1, h2, h3, h4, .font-display {
   text-align: center;
 }
 
-/* 2. Featured Promo Banner Card */
+/* 2. Featured Promo Banner Card (Edisi Kemerdekaan RI) */
 .featured-promo-card {
   margin-top: 12px;
-  background: linear-gradient(135deg, rgba(8, 66, 130, 0.45), rgba(0, 82, 43, 0.35));
-  border: 1px solid rgba(168, 199, 250, 0.3);
+  background: linear-gradient(135deg, rgba(220, 30, 50, 0.42), rgba(50, 16, 24, 0.7));
+  border: 1px solid rgba(255, 77, 90, 0.4);
   border-radius: var(--md-shape-corner-xl);
   padding: 14px 16px;
   display: flex;
@@ -548,6 +553,7 @@ h1, h2, h3, h4, .font-display {
   gap: 12px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 16px rgba(220, 30, 50, 0.2);
 }
 
 .promo-badge-tag {
@@ -555,7 +561,7 @@ h1, h2, h3, h4, .font-display {
   align-items: center;
   gap: 4px;
   background-color: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
+  color: #ffffff;
   font-family: var(--font-display);
   font-size: 0.65rem;
   font-weight: 800;
@@ -587,8 +593,8 @@ h1, h2, h3, h4, .font-display {
 
 .btn-promo-buy {
   padding: 8px 14px;
-  background: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
+  background: linear-gradient(135deg, #e61e38, #c4142b);
+  color: #ffffff;
   border-radius: var(--md-shape-corner-full);
   font-family: var(--font-display);
   font-size: 0.75rem;
@@ -599,6 +605,7 @@ h1, h2, h3, h4, .font-display {
   gap: 4px;
   white-space: nowrap;
   flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(230, 30, 56, 0.4);
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
@@ -653,8 +660,8 @@ h1, h2, h3, h4, .font-display {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background-color: var(--md-sys-color-secondary-container);
-  color: var(--md-sys-color-on-secondary-container);
+  background-color: var(--md-sys-color-primary);
+  color: #ffffff;
   font-family: var(--font-display);
   font-size: 0.7rem;
   font-weight: 800;
@@ -1262,17 +1269,17 @@ h1, h2, h3, h4, .font-display {
 }
 
 .nav-item.active {
-  color: #ffffff;
+  color: #ff3b4e;
 }
 
 .nav-item.active .nav-pill {
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  background: rgba(255, 59, 78, 0.22);
+  border: 1px solid rgba(255, 77, 90, 0.5);
+  box-shadow: 0 0 12px rgba(255, 59, 78, 0.35);
 }
 
 .nav-item.active .nav-pill svg {
-  fill: #ffffff;
+  fill: #ff4d5a;
   transform: translateY(-1px);
 }
 
