@@ -172,10 +172,10 @@ const HOTSPOT_CONFIG = {
   // SISTEM LISENSI RESMI PENGEMBANG (DN APPS / DENI INDRAYANA)
   // Dilindungi Tanda Tangan Kriptografi Anti-Modifikasi
   // =========================================================================
-  license: {
-    status: "trial", // Opsi: "trial" (Uji Coba) atau "active" (Full Version)
+    license: {
+    status: "active",
     clientName: "Maleo Hotspot",
-    expiryDate: "2026-08-31",
-    licenseKey: "DNA-5ED5-86AD-9229" // Kunci Resmi dari Generator DN Apps
+    expiryDate: "LIFETIME",
+    licenseKey: "DNA-75AB-8BC6-2B22" // Kunci Resmi Full Version
   }
 };
