@@ -48,8 +48,20 @@
         </div>
       </div>
 
-      <!-- Elemen Audio Ringan (assets/hari_merdeka.mp3 - Looping & Pausable) -->
-      <audio id="bgAudio" preload="auto" src="assets/hari_merdeka.mp3" loop></audio>
+      <!-- Elemen Audio Ringan (assets/hari_merdeka.mp3 - Instant Play, Looping & Pausable) -->
+      <audio id="bgAudio" preload="auto" src="assets/hari_merdeka.mp3" autoplay loop playsinline></audio>
+      <script>
+        (function() {
+          var audio = document.getElementById('bgAudio');
+          if (audio) {
+            audio.volume = 1.0;
+            var playPromise = audio.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(function() {});
+            }
+          }
+        })();
+      </script>
 
       <!-- Material Tonal Announcement Ticker -->
       <div class="marquee-wrapper">

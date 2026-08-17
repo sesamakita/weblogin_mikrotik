@@ -507,7 +507,7 @@ function initDemoFormSimulation() {
 }
 
 /**
- * 11. Audio Player Jingle Kemerdekaan (Hari Merdeka) Handler (Looping & Pausable)
+ * 11. Audio Player Jingle Kemerdekaan (Hari Merdeka) Handler (Instant Play, Looping & Pausable)
  */
 function initAudioPlayer() {
   const audio = document.getElementById('bgAudio');
@@ -517,25 +517,38 @@ function initAudioPlayer() {
   const iconOn = btnToggle.querySelector('.icon-sound-on');
   const iconOff = btnToggle.querySelector('.icon-sound-off');
 
-  audio.loop = true; // Putar berulang secara mulus
+  audio.loop = true;
+  audio.volume = 1.0;
 
-  function playAudio() {
-    audio.play().then(() => {
+  function updateUiState() {
+    if (!audio.paused) {
       btnToggle.classList.add('playing');
       if (iconOn) iconOn.style.display = 'block';
       if (iconOff) iconOff.style.display = 'none';
-    }).catch(err => {
-      // Browser autoplay policy prevented, will trigger on user interaction
-    });
+    } else {
+      btnToggle.classList.remove('playing');
+      if (iconOn) iconOn.style.display = 'none';
+      if (iconOff) iconOff.style.display = 'block';
+    }
+  }
+
+  function playAudio() {
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        updateUiState();
+      }).catch(() => {
+        // Autoplay dibatasi browser sebelum sentuhan
+      });
+    }
   }
 
   function pauseAudio() {
     audio.pause();
-    btnToggle.classList.remove('playing');
-    if (iconOn) iconOn.style.display = 'none';
-    if (iconOff) iconOff.style.display = 'block';
+    updateUiState();
   }
 
+  // Toggle button listener
   btnToggle.addEventListener('click', (e) => {
     e.stopPropagation();
     if (audio.paused) {
@@ -545,17 +558,26 @@ function initAudioPlayer() {
     }
   });
 
-  // Coba putar langsung saat halaman pertama kali terbuka
+  // Sinkronisasi status audio
+  audio.addEventListener('play', updateUiState);
+  audio.addEventListener('pause', updateUiState);
+  audio.addEventListener('playing', updateUiState);
+
+  // Putar seketika saat script dimuat
   playAudio();
 
-  // Fallback: Putar pada sentuhan/interaksi pertama pengguna jika browser memblokir autoplay instan
-  const startOnFirstInteraction = () => {
+  // Pemicu instan pada sentuhan / pergerakan / interaksi pertama pengguna
+  const triggerInstantPlay = () => {
     if (audio.paused) {
       playAudio();
     }
   };
 
-  ['click', 'touchstart', 'scroll', 'pointerdown', 'keydown'].forEach(ev => {
-    document.addEventListener(ev, startOnFirstInteraction, { once: true, passive: true });
+  ['click', 'touchstart', 'touchend', 'pointerdown', 'pointermove', 'mousedown', 'scroll', 'keydown'].forEach(ev => {
+    window.addEventListener(ev, triggerInstantPlay, { once: true, capture: true, passive: true });
+    document.addEventListener(ev, triggerInstantPlay, { once: true, capture: true, passive: true });
   });
+
+  window.addEventListener('load', playAudio);
+  window.addEventListener('pageshow', playAudio);
 }
