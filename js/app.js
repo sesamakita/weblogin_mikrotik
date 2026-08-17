@@ -356,8 +356,8 @@ function renderDeveloperShowcase(dev) {
   }
 
   if (contactBtn) {
-    const waNumber = formatWhatsAppNumber(dev.whatsApp || '6281234567890');
-    const msg = encodeURIComponent(`Halo Mas ${dev.name} (${dev.brand} - ${dev.company}), saya ingin konsultasi terkait pembuatan Website / Aplikasi / Software.`);
+    const waNumber = formatWhatsAppNumber(dev.whatsApp || '6282196929193');
+    const msg = encodeURIComponent(`Halo Mas ${dev.name} (${dev.brand} • ${dev.company}),\n\nSaya tertarik dan ingin bertanya mengenai layanan pembuatan Website / Landing Page / Aplikasi HP / Custom Software.\n\nBoleh minta informasi detail, estimasi biaya, dan portofolionya? Terima kasih.`);
     contactBtn.href = `https://wa.me/${waNumber}?text=${msg}`;
   }
 }

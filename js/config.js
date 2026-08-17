@@ -121,7 +121,7 @@ const HOTSPOT_CONFIG = {
     company: "PT Berdikari Bangun Bangsa",
     name: "Deni Indrayana",
     role: "Fullstack Web & Mobile Developer",
-    whatsApp: "6281234567890", // Ganti dengan nomor WhatsApp Developer Deni Indrayana
+    whatsApp: "6282196929193", // Nomor WhatsApp Developer Deni Indrayana
     email: "deni.indrayana@dnapps.id",
     tagline: "Solusi Transformasi Digital & Pembuatan Software Profesional",
     services: [

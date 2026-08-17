@@ -517,8 +517,8 @@ h1, h2, h3, h4, .font-display {
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: none; /* Bebas ketik huruf kecil, kapital, angka, atau kombinasi */
   outline: none;
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
