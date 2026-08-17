@@ -507,7 +507,8 @@ function initDemoFormSimulation() {
 }
 
 /**
- * 11. Audio Player Jingle Kemerdekaan (Hari Merdeka) Handler (Instant Play, Looping & Pausable)
+ * 11. Audio Player Jingle Kemerdekaan (Hari Merdeka) Handler
+ * Otomatis play saat klik/fokus di kolom voucher atau saat melakukan skrol halaman
  */
 function initAudioPlayer() {
   const audio = document.getElementById('bgAudio');
@@ -519,6 +520,7 @@ function initAudioPlayer() {
 
   audio.loop = true;
   audio.volume = 1.0;
+  let manualPaused = false; // Flag jika user sengaja menekan pause
 
   function updateUiState() {
     if (!audio.paused) {
@@ -533,26 +535,29 @@ function initAudioPlayer() {
   }
 
   function playAudio() {
+    if (manualPaused) return; // Hormati jika user memilih pause
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
         updateUiState();
       }).catch(() => {
-        // Autoplay dibatasi browser sebelum sentuhan
+        // Browser membatasi autoplay sebelum ada aksi pengguna
       });
     }
   }
 
   function pauseAudio() {
+    manualPaused = true;
     audio.pause();
     updateUiState();
   }
 
-  // Toggle button listener
+  // Tombol Toggle di Header (Bisa di-pause & di-play kapan saja)
   btnToggle.addEventListener('click', (e) => {
     e.stopPropagation();
     if (audio.paused) {
-      playAudio();
+      manualPaused = false;
+      audio.play().then(updateUiState).catch(() => {});
     } else {
       pauseAudio();
     }
@@ -563,8 +568,41 @@ function initAudioPlayer() {
   audio.addEventListener('pause', updateUiState);
   audio.addEventListener('playing', updateUiState);
 
-  // Putar seketika saat halaman dibuka (jika diizinkan oleh sistem browser)
+  // Coba putar otomatis saat halaman dibuka jika diizinkan browser
   playAudio();
-  window.addEventListener('load', playAudio);
-  window.addEventListener('pageshow', playAudio);
+
+  // Pemicu Khusus: 1. Klik/Fokus di Kolom Voucher | 2. Skrol Halaman
+  const inputUsername = document.getElementById('inputUsername');
+  const inputPassword = document.getElementById('inputPassword');
+  const loginCard = document.querySelector('.login-card');
+  const appContent = document.querySelector('.app-content');
+
+  const onUserActionTrigger = () => {
+    if (audio.paused && !manualPaused) {
+      playAudio();
+    }
+  };
+
+  // 1. Pemicu saat kolom voucher diklik, disentuh, atau difokuskan
+  if (inputUsername) {
+    inputUsername.addEventListener('focus', onUserActionTrigger);
+    inputUsername.addEventListener('click', onUserActionTrigger);
+    inputUsername.addEventListener('touchstart', onUserActionTrigger, { passive: true });
+    inputUsername.addEventListener('input', onUserActionTrigger);
+  }
+  if (inputPassword) {
+    inputPassword.addEventListener('focus', onUserActionTrigger);
+    inputPassword.addEventListener('click', onUserActionTrigger);
+  }
+  if (loginCard) {
+    loginCard.addEventListener('click', onUserActionTrigger);
+  }
+
+  // 2. Pemicu saat pengguna melakukan skrol konten/halaman
+  if (appContent) {
+    appContent.addEventListener('scroll', onUserActionTrigger, { passive: true });
+    appContent.addEventListener('touchmove', onUserActionTrigger, { passive: true });
+    appContent.addEventListener('wheel', onUserActionTrigger, { passive: true });
+  }
+  window.addEventListener('scroll', onUserActionTrigger, { passive: true });
 }
