@@ -12,43 +12,47 @@
   --font-display: 'Plus Jakarta Sans', 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-  /* Material Design 3 - EDISI SPESIAL KEMERDEKAAN RI 17 AGUSTUS (70% MERAH PUTIH) */
-  --md-sys-color-surface: #111318;
-  --md-sys-color-surface-dim: #0b0d11;
-  --md-sys-color-surface-container: #1b1e25;
-  --md-sys-color-surface-container-high: #272a33;
-  --md-sys-color-surface-container-highest: #323642;
+  /* Material Design 3 - CLEAN LIGHT & MERAH PUTIH THEME (MATCHES WHITE APPBAR & BANNER) */
+  --md-sys-color-surface: #f8fafc; /* Latar Konten Bersih & Cerah */
+  --md-sys-color-surface-dim: #eef2f6;
+  --md-sys-color-surface-container: #ffffff; /* Semua Card Putih Bersih */
+  --md-sys-color-surface-container-high: #f8fafc;
+  --md-sys-color-surface-container-highest: #f1f5f9;
   
-  /* Merah Berani & Putih Suci Accents */
-  --md-sys-color-primary: #ff3b4e; /* Merah Indonesia Vibrant */
-  --md-sys-color-on-primary: #ffffff; /* Putih Bersih */
-  --md-sys-color-primary-container: #8b0017; /* Deep Crimson Glass */
-  --md-sys-color-on-primary-container: #ffdad9;
+  /* Merah Berani & Putih Accents */
+  --md-sys-color-primary: #dc2626; /* Merah Indonesia */
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #fee2e2;
+  --md-sys-color-on-primary-container: #991b1b;
   
-  --md-sys-color-secondary: #ffffff; /* Putih Bersih */
-  --md-sys-color-secondary-container: #441820; /* Merah Transparan Glass */
-  --md-sys-color-on-secondary-container: #ffffff;
+  --md-sys-color-secondary: #0f172a;
+  --md-sys-color-secondary-container: #f1f5f9;
+  --md-sys-color-on-secondary-container: #0f172a;
   
-  --md-sys-color-tertiary: #ff8591;
-  --md-sys-color-tertiary-container: #331318;
-  --md-sys-color-on-tertiary-container: #ffdad9;
+  --md-sys-color-tertiary: #16a34a;
+  --md-sys-color-tertiary-container: #dcfce7;
+  --md-sys-color-on-tertiary-container: #15803d;
   
-  --md-sys-color-outline: #8e9099;
-  --md-sys-color-outline-variant: #43474e;
+  --md-sys-color-outline: #94a3b8;
+  --md-sys-color-outline-variant: #e2e8f0;
   
-  --md-sys-color-on-surface: #f4f4f7;
-  --md-sys-color-on-surface-variant: #c8cad2;
+  --md-sys-color-on-surface: #0f172a; /* Teks Utama Gelap Tegas */
+  --md-sys-color-on-surface-variant: #475569; /* Teks Sekunder Muted */
   
-  --md-sys-color-error: #f2b8b5;
-  --md-sys-color-error-container: #8c1d18;
-  --md-sys-color-on-error-container: #f9dedc;
+  --md-sys-color-error: #dc2626;
+  --md-sys-color-error-container: #fee2e2;
+  --md-sys-color-on-error-container: #991b1b;
+
+  /* Shadow Tokens */
+  --card-shadow: 0 4px 18px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --card-shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.06);
 
   /* M3 Shape Tokens */
   --md-shape-corner-xs: 4px;
   --md-shape-corner-sm: 8px;
-  --md-shape-corner-md: 16px;
-  --md-shape-corner-lg: 24px;
-  --md-shape-corner-xl: 28px;
+  --md-shape-corner-md: 14px;
+  --md-shape-corner-lg: 18px;
+  --md-shape-corner-xl: 20px;
   --md-shape-corner-full: 9999px;
 
   /* M3 Transitions */
@@ -97,13 +101,13 @@ h1, h2, h3, h4, .font-display {
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  background-color: var(--md-sys-color-surface);
+  background-color: var(--md-sys-color-surface); /* Latar Bersih Cerah */
   position: relative;
   margin: 0 auto;
   overflow: hidden; /* Kunci agar header dan nav bar tetap diam */
 }
 
-/* Pelindung White Glass Transparan Halus di Belakang Bottom Nav Bar */
+/* Pelindung Fade Gradient Halus di Belakang Bottom Nav Bar */
 .app-container::after {
   content: '';
   position: fixed;
@@ -113,10 +117,10 @@ h1, h2, h3, h4, .font-display {
   width: 100%;
   max-width: 460px;
   height: 84px; /* Tinggi presisi pas di area nav bar */
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.08) 25%, rgba(255, 255, 255, 0.02) 75%, transparent 100%);
+  background: linear-gradient(to top, #f8fafc 40%, rgba(248, 250, 252, 0.85) 75%, transparent 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
   pointer-events: none;
   z-index: 900;
 }
@@ -135,7 +139,7 @@ h1, h2, h3, h4, .font-display {
     max-height: 880px;
     border-radius: var(--md-shape-corner-xl);
     border: 1px solid var(--md-sys-color-outline-variant);
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
   }
 }
 
@@ -595,7 +599,7 @@ h1, h2, h3, h4, .font-display {
    WIDGET HALAMAN DEPAN TAMBAHAN (RITME JARAK PRESISI & HARMONIS)
    ========================================================================== */
 
-/* 1. Quick Action Shortcuts (Grid 4 Ikon) */
+/* 1. Quick Action Shortcuts (Grid 4 Ikon dengan Efek Bayangan & Latar Putih) */
 .quick-actions-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -609,19 +613,21 @@ h1, h2, h3, h4, .font-display {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background-color: var(--md-sys-color-surface-container);
+  background-color: #ffffff;
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-shape-corner-lg);
   padding: 10px 4px;
   cursor: pointer;
   text-decoration: none;
   color: var(--md-sys-color-on-surface);
+  box-shadow: var(--card-shadow);
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
 .action-item:hover, .action-item:active {
-  background-color: var(--md-sys-color-surface-container-high);
+  background-color: #ffffff;
   transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
   border-color: var(--md-sys-color-primary);
 }
 
@@ -635,10 +641,10 @@ h1, h2, h3, h4, .font-display {
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
-.action-icon.tarif { background: rgba(255, 59, 78, 0.15); color: var(--md-sys-color-primary); }
-.action-icon.agen  { background: rgba(255, 255, 255, 0.12); color: #ffffff; }
-.action-icon.qr    { background: rgba(255, 59, 78, 0.15); color: var(--md-sys-color-primary); }
-.action-icon.cs    { background: rgba(37, 211, 102, 0.15); color: #25d366; }
+.action-icon.tarif { background: #fee2e2; color: #dc2626; }
+.action-icon.agen  { background: #f1f5f9; color: #0f172a; }
+.action-icon.qr    { background: #fee2e2; color: #dc2626; }
+.action-icon.cs    { background: #dcfce7; color: #16a34a; }
 
 .action-icon svg {
   width: 19px;
@@ -654,11 +660,11 @@ h1, h2, h3, h4, .font-display {
   text-align: center;
 }
 
-/* 2. Featured Promo Banner Card (Edisi Kemerdekaan RI) */
+/* 2. Featured Promo Banner Card (Latar Putih-Kemerdekaan & Efek Bayangan) */
 .featured-promo-card {
   margin-top: 12px;
-  background: linear-gradient(135deg, rgba(220, 30, 50, 0.42), rgba(50, 16, 24, 0.7));
-  border: 1px solid rgba(255, 77, 90, 0.4);
+  background: linear-gradient(135deg, #ffffff, #fff5f5);
+  border: 1.5px solid #fca5a5;
   border-radius: var(--md-shape-corner-xl);
   padding: 14px 16px;
   display: flex;
@@ -667,7 +673,7 @@ h1, h2, h3, h4, .font-display {
   gap: 12px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(220, 30, 50, 0.2);
+  box-shadow: var(--card-shadow);
 }
 
 /* Card Banner Gambar Kustom (assets/banner_hut81.jpg) */
@@ -677,8 +683,8 @@ h1, h2, h3, h4, .font-display {
   width: 100%;
   border-radius: var(--md-shape-corner-xl);
   overflow: hidden;
-  border: 1px solid rgba(255, 77, 90, 0.3);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 10px rgba(255, 59, 78, 0.15);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--card-shadow);
   display: block;
 }
 
@@ -708,13 +714,13 @@ h1, h2, h3, h4, .font-display {
   font-family: var(--font-display);
   font-size: 0.9rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .promo-sub {
   font-family: var(--font-body);
   font-size: 0.73rem;
-  color: var(--md-sys-color-on-surface-variant);
+  color: #64748b;
   margin-top: 2px;
 }
 
@@ -727,7 +733,7 @@ h1, h2, h3, h4, .font-display {
 
 .btn-promo-buy {
   padding: 8px 14px;
-  background: linear-gradient(135deg, #e61e38, #c4142b);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   color: #ffffff;
   border-radius: var(--md-shape-corner-full);
   font-family: var(--font-display);
@@ -739,7 +745,7 @@ h1, h2, h3, h4, .font-display {
   gap: 4px;
   white-space: nowrap;
   flex-shrink: 0;
-  box-shadow: 0 2px 10px rgba(230, 30, 56, 0.4);
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.35);
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
@@ -751,17 +757,18 @@ h1, h2, h3, h4, .font-display {
 /* 3. 3-Step Mini Guide Card */
 .step-guide-card {
   margin-top: 12px;
-  background-color: var(--md-sys-color-surface-container);
+  background-color: #ffffff;
   border-radius: var(--md-shape-corner-xl);
   padding: 14px 16px;
   border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--card-shadow);
 }
 
 .step-guide-title {
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 800;
-  color: var(--md-sys-color-on-surface);
+  color: #0f172a;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -857,9 +864,10 @@ h1, h2, h3, h4, .font-display {
 }
 
 .quick-card {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: #ffffff;
   border-radius: var(--md-shape-corner-lg);
   border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--card-shadow);
   padding: 10px 12px;
   display: flex;
   align-items: center;
@@ -870,8 +878,8 @@ h1, h2, h3, h4, .font-display {
   width: 34px;
   height: 34px;
   border-radius: var(--md-shape-corner-sm);
-  background-color: var(--md-sys-color-surface-container-highest);
-  color: var(--md-sys-color-primary);
+  background-color: #fee2e2;
+  color: #dc2626;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -900,7 +908,7 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* ==========================================================================
-   TAB 2: PACKAGE CARDS
+   TAB 2: PACKAGE CARDS (WHITE CARDS & ELEVATION SHADOW)
    ========================================================================== */
 .section-header {
   margin-bottom: 18px;
@@ -937,26 +945,33 @@ h1, h2, h3, h4, .font-display {
 }
 
 .package-card {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: #ffffff;
   border-radius: var(--md-shape-corner-xl);
   padding: 18px 20px;
   position: relative;
   overflow: hidden;
   transition: all var(--md-motion-duration) var(--md-motion-easing);
-  border: 1px solid transparent;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--card-shadow);
+}
+
+.package-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .package-card.popular {
-  border-color: var(--md-sys-color-primary);
-  background-color: var(--md-sys-color-surface-container-high);
+  border: 2px solid #dc2626;
+  background-color: #ffffff;
+  box-shadow: 0 6px 24px rgba(220, 38, 38, 0.15);
 }
 
 .package-badge {
   position: absolute;
   top: 16px;
   right: 16px;
-  background-color: var(--md-sys-color-secondary-container);
-  color: var(--md-sys-color-on-secondary-container);
+  background-color: #f1f5f9;
+  color: #334155;
   font-family: var(--font-display);
   font-size: 0.7rem;
   font-weight: 800;
@@ -965,8 +980,8 @@ h1, h2, h3, h4, .font-display {
 }
 
 .package-card.popular .package-badge {
-  background-color: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
+  background-color: #dc2626;
+  color: #ffffff;
 }
 
 .package-name {
@@ -1008,9 +1023,9 @@ h1, h2, h3, h4, .font-display {
   align-items: center;
   gap: 6px;
   font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--md-sys-color-on-surface-variant);
-  background-color: var(--md-sys-color-surface-container-highest);
+  font-weight: 600;
+  color: #334155;
+  background-color: #f1f5f9;
   padding: 6px 10px;
   border-radius: var(--md-shape-corner-sm);
 }
@@ -1024,8 +1039,8 @@ h1, h2, h3, h4, .font-display {
 .btn-buy-wa {
   width: 100%;
   padding: 12px;
-  background-color: var(--md-sys-color-tertiary-container);
-  color: var(--md-sys-color-on-tertiary-container);
+  background-color: #16a34a;
+  color: #ffffff;
   border-radius: var(--md-shape-corner-full);
   font-family: var(--font-display);
   font-size: 0.85rem;
@@ -1037,6 +1052,7 @@ h1, h2, h3, h4, .font-display {
   justify-content: center;
   gap: 8px;
   text-decoration: none;
+  box-shadow: 0 3px 12px rgba(22, 163, 74, 0.25);
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
@@ -1047,11 +1063,12 @@ h1, h2, h3, h4, .font-display {
 }
 
 .btn-buy-wa:hover {
-  filter: brightness(1.15);
+  background-color: #15803d;
+  transform: scale(0.99);
 }
 
 /* ==========================================================================
-   TAB 3: OUTLET CARDS
+   TAB 3: OUTLET CARDS (WHITE CARDS & ELEVATION SHADOW)
    ========================================================================== */
 .outlet-list {
   display: flex;
@@ -1060,20 +1077,28 @@ h1, h2, h3, h4, .font-display {
 }
 
 .outlet-card {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: #ffffff;
   border-radius: var(--md-shape-corner-lg);
   padding: 16px;
   display: flex;
   align-items: flex-start;
   gap: 14px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--card-shadow);
+  transition: all var(--md-motion-duration) var(--md-motion-easing);
+}
+
+.outlet-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .outlet-icon {
   width: 42px;
   height: 42px;
   border-radius: var(--md-shape-corner-md);
-  background-color: var(--md-sys-color-surface-container-highest);
-  color: var(--md-sys-color-primary);
+  background-color: #fee2e2;
+  color: #dc2626;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1105,8 +1130,8 @@ h1, h2, h3, h4, .font-display {
   font-family: var(--font-display);
   font-size: 0.7rem;
   font-weight: 800;
-  color: var(--md-sys-color-on-tertiary-container);
-  background-color: var(--md-sys-color-tertiary-container);
+  color: #15803d;
+  background-color: #dcfce7;
   padding: 3px 8px;
   border-radius: var(--md-shape-corner-full);
 }
@@ -1121,7 +1146,7 @@ h1, h2, h3, h4, .font-display {
 .outlet-time {
   font-family: var(--font-body);
   font-size: 0.75rem;
-  color: var(--md-sys-color-outline);
+  color: #64748b;
   margin-top: 6px;
   display: flex;
   align-items: center;
@@ -1129,15 +1154,16 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* ==========================================================================
-   TAB 4: BANTUAN & CS
+   TAB 4: BANTUAN & CS (WHITE CARDS & ELEVATION SHADOW)
    ========================================================================== */
 .cs-card {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: #ffffff;
   border-radius: var(--md-shape-corner-xl);
   padding: 22px 18px;
   text-align: center;
   margin-bottom: 22px;
   border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--card-shadow);
 }
 
 .cs-card h3 {
@@ -1174,17 +1200,26 @@ h1, h2, h3, h4, .font-display {
   justify-content: center;
   gap: 8px;
   text-decoration: none;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.08);
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
 .btn-cs.wa {
-  background-color: var(--md-sys-color-tertiary-container);
-  color: var(--md-sys-color-on-tertiary-container);
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.btn-cs.wa:hover {
+  background-color: #15803d;
 }
 
 .btn-cs.tg {
-  background-color: var(--md-sys-color-secondary-container);
-  color: var(--md-sys-color-on-secondary-container);
+  background-color: #0284c7;
+  color: #ffffff;
+}
+
+.btn-cs.tg:hover {
+  background-color: #0369a1;
 }
 
 .btn-cs svg {
@@ -1193,7 +1228,7 @@ h1, h2, h3, h4, .font-display {
   fill: currentColor;
 }
 
-/* FAQ */
+/* FAQ Accordion */
 .faq-list {
   display: flex;
   flex-direction: column;
@@ -1201,9 +1236,11 @@ h1, h2, h3, h4, .font-display {
 }
 
 .faq-item {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: #ffffff;
   border-radius: var(--md-shape-corner-lg);
   overflow: hidden;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
@@ -1240,7 +1277,7 @@ h1, h2, h3, h4, .font-display {
   font-size: 0.82rem;
   line-height: 1.6;
   color: var(--md-sys-color-on-surface-variant);
-  background-color: var(--md-sys-color-surface-container-high);
+  background-color: #f8fafc;
   padding: 0 18px;
 }
 
@@ -1260,10 +1297,12 @@ h1, h2, h3, h4, .font-display {
 }
 
 .stat-box {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: #ffffff;
   border-radius: var(--md-shape-corner-lg);
   padding: 16px 14px;
   text-align: center;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--card-shadow);
 }
 
 .stat-box .stat-label {
@@ -1294,8 +1333,10 @@ h1, h2, h3, h4, .font-display {
 .user-badge-header {
   text-align: center;
   padding: 20px;
-  background-color: var(--md-sys-color-surface-container);
+  background-color: #ffffff;
   border-radius: var(--md-shape-corner-xl);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--card-shadow);
   margin-bottom: 20px;
 }
 
@@ -1320,8 +1361,8 @@ h1, h2, h3, h4, .font-display {
 .btn-danger {
   width: 100%;
   padding: 14px;
-  background-color: var(--md-sys-color-error-container);
-  color: var(--md-sys-color-on-error-container);
+  background-color: #dc2626;
+  color: #ffffff;
   border: none;
   border-radius: var(--md-shape-corner-full);
   font-family: var(--font-display);
@@ -1334,26 +1375,27 @@ h1, h2, h3, h4, .font-display {
   justify-content: center;
   gap: 8px;
   text-decoration: none;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35);
   transition: all var(--md-motion-duration) var(--md-motion-easing);
 }
 
 /* ==========================================================================
-   BOTTOM NAVIGATION BAR (WHITE FROSTED GLASS DOCK)
+   BOTTOM NAVIGATION BAR (CLEAN WHITE FLOATING DOCK)
    ========================================================================== */
 .bottom-nav {
   position: fixed;
   bottom: calc(10px + env(safe-area-inset-bottom));
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 24px); /* Margin 12px tiap sisi agar lebih pas & kompak */
+  width: calc(100% - 24px);
   max-width: 436px;
   height: 64px;
-  background: rgba(255, 255, 255, 0.08); /* White glass translucent */
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(226, 232, 240, 0.8);
   border-radius: var(--md-shape-corner-full);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12), 0 1px 3px rgba(15, 23, 42, 0.05);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -1369,7 +1411,7 @@ h1, h2, h3, h4, .font-display {
   justify-content: center;
   background: transparent;
   border: none;
-  color: var(--md-sys-color-outline);
+  color: #64748b;
   cursor: pointer;
   padding: 4px 0;
   position: relative;
@@ -1403,21 +1445,21 @@ h1, h2, h3, h4, .font-display {
 }
 
 .nav-item.active {
-  color: #ff3b4e;
+  color: #dc2626;
 }
 
 .nav-item.active .nav-pill {
-  background: rgba(255, 59, 78, 0.22);
-  border: 1px solid rgba(255, 77, 90, 0.5);
-  box-shadow: 0 0 12px rgba(255, 59, 78, 0.35);
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
 }
 
 .nav-item.active .nav-pill svg {
-  fill: #ff4d5a;
+  fill: #dc2626;
   transform: translateY(-1px);
 }
 
 .nav-item.active .nav-label {
-  color: #ffffff;
+  color: #0f172a;
   font-weight: 800;
 }
