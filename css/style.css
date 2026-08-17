@@ -430,7 +430,7 @@ h1, h2, h3, h4, .font-display {
 /* High-Visibility Voucher Input Field with Harmonized 14px Rounded Corners */
 .form-control {
   width: 100%;
-  padding: 13px 48px 13px 44px;
+  padding: 13px 56px 13px 44px;
   background-color: #f8fafc;
   border: 2px solid #e2e8f0;
   border-radius: 14px; /* Disamakan 14px */
@@ -471,16 +471,16 @@ h1, h2, h3, h4, .font-display {
   gap: 4px;
 }
 
-/* Scan QR Icon Button (Compact Icon Only) */
+/* Scan QR Icon Button (Ukuran Lebih Besar & Jelas) */
 .btn-scan-qr {
   position: absolute;
   right: 6px;
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   background: #fee2e2;
-  border: 1px solid #fca5a5;
+  border: 1.5px solid #fca5a5;
   color: #dc2626;
-  border-radius: 10px;
+  border-radius: 11px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -491,8 +491,8 @@ h1, h2, h3, h4, .font-display {
 }
 
 .btn-scan-qr svg {
-  width: 18px;
-  height: 18px;
+  width: 23px;
+  height: 23px;
   fill: #dc2626;
 }
 

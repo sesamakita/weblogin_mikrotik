@@ -16,6 +16,12 @@ function cleanupPreviewTags() {
     errorEl.style.display = 'none';
   }
 
+  // Bersihkan nilai input username jika masih berupa $(username) pada web preview non-RouterOS
+  const inputUsername = document.getElementById('inputUsername');
+  if (inputUsername && (inputUsername.value === '$(username)' || inputUsername.value.includes('$'))) {
+    inputUsername.value = '';
+  }
+
   // Bersihkan teks node $(if ...) atau $(endif) yang tersisa di body
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   while (walker.nextNode()) {
@@ -26,6 +32,7 @@ function cleanupPreviewTags() {
       }
       if (node.nodeValue === '$(ip)') node.nodeValue = '192.168.88.10';
       if (node.nodeValue === '$(mac)') node.nodeValue = 'A4:C3:F0:88:12:34';
+      if (node.nodeValue === '$(username)') node.nodeValue = '';
     }
   }
 }
