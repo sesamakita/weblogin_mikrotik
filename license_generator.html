@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DN Apps - License Key Generator (Deni Indrayana)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #dc2626;
+      --primary-hover: #b91c1c;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --success: #16a34a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .generator-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 18px;
+    }
+    .logo-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), #991b1b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      font-family: 'Space Grotesk', sans-serif;
+      color: #fff;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .subtitle {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    input, select {
+      width: 100%;
+      background-color: #0f172a;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    input:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.25);
+    }
+    .btn-generate {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 13px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
+    }
+    .btn-generate:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(220, 38, 38, 0.45);
+    }
+    .result-box {
+      margin-top: 24px;
+      background-color: #0f172a;
+      border: 1.5px solid #3b82f6;
+      border-radius: 14px;
+      padding: 18px;
+      display: none;
+    }
+    .result-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #60a5fa;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .key-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #22c55e;
+      background-color: #1e293b;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px dashed #22c55e;
+      text-align: center;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+      user-select: all;
+    }
+    .snippet-title {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    pre {
+      background-color: #1e293b;
+      padding: 10px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: #cbd5e1;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+    }
+    .btn-copy {
+      margin-top: 12px;
+      width: 100%;
+      background-color: #334155;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-copy:hover {
+      background-color: #475569;
+    }
+  </style>
+  <script src="md5.js"></script>
+</head>
+<body>
+
+  <div class="generator-card">
+    <div class="header">
+      <div class="logo-badge">DN</div>
+      <div>
+        <h1>Generator Lisensi Hotspot</h1>
+        <div class="subtitle">DN Apps • PT Berdikari Bangun Bangsa (Deni Indrayana)</div>
+      </div>
+    </div>
+
+    <form id="licenseForm">
+      <div class="form-group">
+        <label for="clientName">Nama Klien / Nama Hotspot</label>
+        <input type="text" id="clientName" placeholder="Contoh: Maleo Hotspot" required value="Maleo Hotspot">
+      </div>
+
+      <div class="form-group">
+        <label for="licenseType">Jenis Lisensi</label>
+        <select id="licenseType">
+          <option value="active">Full Version (Permanen / Seumur Hidup)</option>
+          <option value="trial">Uji Coba / Trial Berbatas Waktu</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="expiryGroup" style="display: none;">
+        <label for="expiryDate">Batas Tanggal Uji Coba</label>
+        <input type="date" id="expiryDate">
+      </div>
+
+      <button type="submit" class="btn-generate">
+        <span>⚡</span> Buat Kunci Lisensi Resmi
+      </button>
+    </form>
+
+    <div class="result-box" id="resultBox">
+      <div class="result-title">Kunci Lisensi Berhasil Dibuat:</div>
+      <div class="key-display" id="keyDisplay">DNA-XXXX-XXXX-XXXX</div>
+      
+      <div class="snippet-title">Salin & Tempel ke <code>js/config.js</code>:</div>
+      <pre><code id="snippetCode"></code></pre>
+
+      <button type="button" class="btn-copy" id="btnCopy">📋 Salin Konfigurasi ke Clipboard</button>
+    </div>
+  </div>
+
+  <script>
+    // Developer Secret Salt (Sangat Rahasia & Khusus DN Apps)
+    const DEV_SECRET_SALT = "DNA_PT_BERDIKARI_2026_!#%";
+
+    // Set default date to +14 days for trial
+    const d = new Date();
+    d.setDate(d.getDate() + 14);
+    document.getElementById('expiryDate').value = d.toISOString().split('T')[0];
+
+    const typeSelect = document.getElementById('licenseType');
+    const expiryGroup = document.getElementById('expiryGroup');
+
+    typeSelect.addEventListener('change', () => {
+      expiryGroup.style.display = typeSelect.value === 'trial' ? 'block' : 'none';
+    });
+
+    document.getElementById('licenseForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const client = document.getElementById('clientName').value.trim();
+      const type = typeSelect.value;
+      const expiry = document.getElementById('expiryDate').value;
+
+      if (!client) {
+        alert('Mohon isi nama klien!');
+        return;
+      }
+
+      // Generate Signature Key using MD5 Cryptographic Hash
+      let rawString = "";
+      if (type === 'active') {
+        rawString = `${client.toUpperCase()}:ACTIVE:LIFETIME:${DEV_SECRET_SALT}`;
+      } else {
+        rawString = `${client.toUpperCase()}:TRIAL:${expiry}:${DEV_SECRET_SALT}`;
+      }
+
+      const hash = hex_md5(rawString).toUpperCase();
+      const formattedKey = `DNA-${hash.substring(0, 4)}-${hash.substring(4, 8)}-${hash.substring(8, 12)}`;
+
+      document.getElementById('keyDisplay').textContent = formattedKey;
+
+      const snippet = `  // SISTEM LISENSI RESMI DN APPS
+  license: {
+    status: "${type}", // "${type === 'active' ? 'active' : 'trial'}"
+    clientName: "${client}",
+    expiryDate: "${type === 'active' ? 'LIFETIME' : expiry}",
+    licenseKey: "${formattedKey}"
+  }`;
+
+      document.getElementById('snippetCode').textContent = snippet;
+      document.getElementById('resultBox').style.display = 'block';
+    });
+
+    document.getElementById('btnCopy').addEventListener('click', () => {
+      const text = document.getElementById('snippetCode').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Konfigurasi lisensi berhasil disalin ke clipboard!');
+      });
+    });
+  </script>
+</body>
+</html>

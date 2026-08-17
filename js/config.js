@@ -169,24 +169,13 @@ const HOTSPOT_CONFIG = {
   },
 
   // =========================================================================
-  // SISTEM LISENSI & TRIAL PENGEMBANG (DN APPS / DENI INDRAYANA)
+  // SISTEM LISENSI RESMI PENGEMBANG (DN APPS / DENI INDRAYANA)
+  // Dilindungi Tanda Tangan Kriptografi Anti-Modifikasi
   // =========================================================================
   license: {
-    // Status Lisensi:
-    // - "trial"  : Mode Uji Coba Terbatas Waktu (menampilkan sisa hari / kunci saat kedaluwarsa)
-    // - "active" : Lisensi Penuh / Berlangganan Aktif (Full Version Bebas Selamanya)
-    status: "trial",
-
-    // Tanggal Berakhir Masa Trial (Format: YYYY-MM-DD)
+    status: "trial", // Opsi: "trial" (Uji Coba) atau "active" (Full Version)
+    clientName: "Maleo Hotspot",
     expiryDate: "2026-08-31",
-
-    // Nama Klien / Hotspot Pemilik
-    clientName: "Maleo Hotspot (Demo)",
-
-    // Kunci Aktivasi Lisensi (Opsional)
-    licenseKey: "DNA-TRIAL-DEMO-2026",
-
-    // Pesan Catatan
-    notes: "Hubungi DN Apps / Deni Indrayana untuk aktivasi lisensi penuh atau perpanjangan langganan."
+    licenseKey: "DNA-5ED5-86AD-9229" // Kunci Resmi dari Generator DN Apps
   }
 };

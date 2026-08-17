@@ -661,7 +661,7 @@ function initAudioPlayer() {
 }
 
 /**
- * 12. Sistem Kontrol Lisensi & Masa Uji Coba Template (DN Apps • Deni Indrayana)
+ * 12. Sistem Kontrol Lisensi & Kriptografi Anti-Modifikasi (DN Apps • Deni Indrayana)
  */
 function initTemplateLicenseCheck() {
   if (typeof HOTSPOT_CONFIG === 'undefined') return;
@@ -673,23 +673,80 @@ function initTemplateLicenseCheck() {
   const trialText = document.getElementById('trialBannerText');
   const trialBtn = document.getElementById('trialActivateBtn');
   const expiredModal = document.getElementById('licenseExpiredModal');
+  const expiredTitle = expiredModal ? expiredModal.querySelector('.license-modal-title') : null;
+  const expiredDesc = expiredModal ? expiredModal.querySelector('.license-modal-desc') : null;
   const expiredWaBtn = document.getElementById('licenseWaContactBtn');
 
   const waDevNumber = formatWhatsAppNumber(dev.whatsApp || '6282196929193');
+  const DEV_SECRET_SALT = "DNA_PT_BERDIKARI_2026_!#%";
 
-  // 1. Jika Status "active" (Lisensi Full / Berlangganan Aktif)
-  if (lic.status === 'active') {
+  const clientName = (lic.clientName || 'MALEO HOTSPOT').trim().toUpperCase();
+  const status = (lic.status || 'trial').toLowerCase();
+  const expiryDate = (lic.expiryDate || '').trim();
+  const userKey = (lic.licenseKey || '').trim().toUpperCase();
+
+  // Helper Generator Hash Signature (MD5 Cryptographic Signature)
+  function getExpectedKey(type, expDate) {
+    if (typeof hex_md5 !== 'function') return '';
+    let raw = "";
+    if (type === 'active') {
+      raw = `${clientName}:ACTIVE:LIFETIME:${DEV_SECRET_SALT}`;
+    } else {
+      raw = `${clientName}:TRIAL:${expDate}:${DEV_SECRET_SALT}`;
+    }
+    const h = hex_md5(raw).toUpperCase();
+    return `DNA-${h.substring(0, 4)}-${h.substring(4, 8)}-${h.substring(8, 12)}`;
+  }
+
+  function showLockedScreen(title, desc, waSubject) {
+    if (trialBanner) trialBanner.style.display = 'none';
+    if (expiredModal) {
+      expiredModal.style.display = 'flex';
+      if (expiredTitle) expiredTitle.textContent = title;
+      if (expiredDesc) expiredDesc.textContent = desc;
+      if (expiredWaBtn) {
+        const msg = encodeURIComponent(`Halo Mas Deni Indrayana (${dev.brand || 'DN Apps'}), ${waSubject}. Nama Hotspot: ${lic.clientName || 'Klien'}.`);
+        expiredWaBtn.href = `https://wa.me/${waDevNumber}?text=${msg}`;
+      }
+    }
+  }
+
+  // 1. Verifikasi Mode ACTIVE (Full Version)
+  if (status === 'active') {
+    const expectedKey = getExpectedKey('active', 'LIFETIME');
+    if (userKey !== expectedKey) {
+      // Modifikasi Ilegal Terdeteksi (Owner mencoba ubah ke active tanpa kunci sah)
+      showLockedScreen(
+        "Lisensi Tidak Sah / Telah Dimodifikasi",
+        "Kunci lisensi yang dimasukkan tidak valid untuk nama klien ini. Silakan hubungi pengembang Deni Indrayana untuk mendapatkan Kunci Lisensi Resmi.",
+        "saya ingin mengaktifkan Kunci Lisensi Resmi Full Version"
+      );
+      return;
+    }
+
+    // Lisensi Valid & Resmi (Full Version Seumur Hidup)
     if (trialBanner) trialBanner.style.display = 'none';
     if (expiredModal) expiredModal.style.display = 'none';
     return;
   }
 
-  // 2. Jika Status "trial" (Mode Uji Coba)
-  if (lic.status === 'trial') {
+  // 2. Verifikasi Mode TRIAL (Uji Coba)
+  if (status === 'trial') {
+    const expectedTrialKey = getExpectedKey('trial', expiryDate);
+    if (userKey !== expectedTrialKey) {
+      // Modifikasi Ilegal Terdeteksi (Owner mencoba manipulasi tanggal trial tanpa kunci sah)
+      showLockedScreen(
+        "Kunci Trial Tidak Valid",
+        "Tanggal atau kunci uji coba tidak cocok dengan data lisensi resmi. Silakan hubungi pengembang untuk perpanjangan masa trial.",
+        "kunci uji coba saya tidak cocok, mohon bantuannya"
+      );
+      return;
+    }
+
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const expiry = new Date(lic.expiryDate || '2026-08-31');
+    const expiry = new Date(expiryDate || '2026-08-31');
     expiry.setHours(23, 59, 59, 999);
 
     const diffTime = expiry.getTime() - today.getTime();
@@ -709,15 +766,12 @@ function initTemplateLicenseCheck() {
       }
       if (expiredModal) expiredModal.style.display = 'none';
     } else {
-      // Masa Trial TELAH KEDALUWARSA: Kunci Layar (Lock Screen)
-      if (trialBanner) trialBanner.style.display = 'none';
-      if (expiredModal) {
-        expiredModal.style.display = 'flex';
-        if (expiredWaBtn) {
-          const msg = encodeURIComponent(`Halo Mas Deni Indrayana (${dev.brand || 'DN Apps'}), masa uji coba template hotspot (${lic.clientName || 'Hotspot'}) telah habis. Saya ingin mengaktifkan lisensi full.`);
-          expiredWaBtn.href = `https://wa.me/${waDevNumber}?text=${msg}`;
-        }
-      }
+      // Masa Trial Kedaluwarsa
+      showLockedScreen(
+        "Masa Uji Coba Berakhir",
+        "Masa trial template web login hotspot ini telah habis. Untuk mengaktifkan lisensi penuh (Full Version) atau memperpanjang langganan, silakan hubungi developer:",
+        "masa uji coba template hotspot telah berakhir, saya ingin aktivasi lisensi full"
+      );
     }
   }
 }
