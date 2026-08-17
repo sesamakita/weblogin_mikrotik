@@ -1,0 +1,176 @@
+================================================================================
+          PANDUAN PENGATURAN WEB LOGIN HOTSPOT (UNTUK PEMILIK / OWNER)
+              Dikembangkan oleh: DN Apps • PT Berdikari Bangun Bangsa
+                 Lead Developer: Deni Indrayana (0821-9692-9193)
+================================================================================
+
+Halo Pemilik Hotspot!
+Panduan ini dibuat khusus agar Anda dapat mengubah nama usaha, nomor WhatsApp,
+daftar paket internet, harga voucher, lokasi agen warung, dan tanya jawab (FAQ) 
+dengan sangat mudah, aman, dan tanpa perlu paham bahasa pemrograman yang rumit.
+
+Semua data teks dan harga hotspot Anda tersimpan di satu file:
+📁 Folder: js
+📄 File  : config.js  (js/config.js)
+
+--------------------------------------------------------------------------------
+📌 ATURAN EMAS SAAT MENGEDIT FILE (PENTING DIBACA DULU):
+--------------------------------------------------------------------------------
+1. Anda cukup menggunakan aplikasi "Notepad" bawaan Windows atau "Notepad++".
+   Cara buka: Klik kanan file config.js -> Pilih "Open with" -> Pilih "Notepad".
+2. JANGAN MENGHAPUS tanda petik (" "), tanda koma (,), atau kurung kurawal ({ }).
+3. Tulis teks Anda di antara tanda petik, contoh: name: "NAMA HOTSPOT ANDA"
+4. Untuk HARGA, tulis angka murni tanpa titik/koma, contoh: price: 8000 (bukan 8.000)
+5. Jangan lupa simpan perubahan: Tekan tombol Ctrl + S di keyboard.
+
+
+================================================================================
+LANGKAH 1: MENGUBAH NAMA USAHA, SLOGAN & WHATSAPP ADMIN
+================================================================================
+Cari bagian teks berikut di dalam file config.js:
+
+  brand: {
+    name: "MALEO HOTSPOT 🇮🇩",
+    tagline: "Edisi Spesial HUT RI Ke-81",
+    logoText: "Maleo",
+    csWhatsApp: "6282196929193",
+    csTelegram: "admin_maleo",
+    runningText: "🇮🇩 Dirgahayu Republik Indonesia! Nikmati Promo Merdeka Super Cepat & Kuota Unlimited Sepuasnya! 🇮🇩"
+  },
+
+Cara Mengubahnya:
+• "name"        : Ganti nama hotspot Anda, misal: "BERKAH WI-FI"
+• "tagline"     : Ganti slogan Anda, misal: "Internet Cepat & Hemat Untuk Warga"
+• "csWhatsApp"  : Ganti nomor WA Admin Anda (Wajib diawali 62, contoh: "6281234567890")
+• "runningText" : Ganti teks pengumuman berjalan di atas layar login
+
+
+================================================================================
+LANGKAH 2: MENGUBAH HARGA & DAFTAR PAKET INTERNET
+================================================================================
+Cari bagian "packages: [" di file config.js.
+Di bawahnya terdapat daftar paket voucher Anda.
+
+Contoh 1 Paket Voucher:
+    {
+      id: "pkt_1",
+      name: "Paket Merdeka 2 Jam",
+      duration: "2 Jam",
+      speed: "Up to 5 Mbps",
+      quota: "Unlimited FUP",
+      price: 2000,
+      popular: false,
+      badge: "Hemat"
+    },
+
+Penjelasan Setiap Baris:
+• "name"     : Nama paket yang tampil di kartu (misal: "Paket Pelajar 2 Jam")
+• "duration" : Durasi waktu pakai (misal: "2 Jam" atau "1 Hari")
+• "speed"    : Keterangan kecepatan (misal: "Up to 5 Mbps")
+• "quota"    : Keterangan kuota (misal: "Unlimited" atau "Kuota 2 GB")
+• "price"    : Harga dalam rupiah. Cukup tulis angkanya saja!
+               Contoh: 2000 (Otomatis tampil sebagai Rp 2.000 di web)
+• "popular"  : Tulis true jika ingin paket ini diberi garis merah "Paling Laris"
+               Tulis false jika paket biasa.
+• "badge"    : Label tulisan kecil di pojok paket (misal: "Hemat" / "Promo")
+
+
+================================================================================
+LANGKAH 3: MENGUBAH LOKASI WARUNG / AGEN PENJUAL VOUCHER
+================================================================================
+Cari bagian "outlets: [" di file config.js.
+Anda bisa menyesuaikan nama warung/konter mitra tempat beli voucher.
+
+Contoh 1 Lokasi Agen:
+    {
+      name: "Warung Berkah Bu Siti",
+      address: "Jl. Mawar No. 12 (Depan Lapangan)",
+      hours: "07:00 - 22:00 WIB",
+      status: "Buka"
+    },
+
+Penjelasan:
+• "name"    : Nama toko / warung mitra Anda
+• "address" : Alamat atau patokan lokasi warung
+• "hours"   : Jam buka toko (misal: "07:00 - 22:00 WIB" atau "Buka 24 Jam")
+• "status"  : Tulis "Buka" atau "Tutup"
+
+
+================================================================================
+LANGKAH 4: MENGUBAH TANYA JAWAB BANTUAN (FAQ)
+================================================================================
+Cari bagian "faqs: [" di file config.js.
+Bagian ini mengatur jawaban otomatis saat pelanggan membuka menu Bantuan.
+
+Contoh 1 Tanya Jawab:
+    {
+      q: "Bagaimana cara login menggunakan Voucher?",
+      a: "Pilih tab 'Login', masukkan Kode Voucher ke kolom, lalu klik tombol 'Masuk'."
+    },
+
+• "q" : Pertanyaan yang sering ditanyakan pelanggan
+• "a" : Jawaban petunjuk dari Anda
+
+
+================================================================================
+LANGKAH 5: PENGATURAN LISENSI TEMPLATE
+================================================================================
+Bagian ini mengatur status lisensi template hotspot Anda dari pengembang DN Apps:
+
+  license: {
+    status: "active",
+    clientName: "Maleo Hotspot",
+    expiryDate: "LIFETIME",
+    licenseKey: "DNA-75AB-8BC6-2B22"
+  }
+
+⚠️ CATATAN PENTING LISENSI:
+• Kunci "licenseKey" dibuat secara resmi oleh pengembang Deni Indrayana (DN Apps).
+• Jangan mengubah nama "clientName" atau "licenseKey" sembarangan, karena jika 
+  kuncinya tidak cocok, layar web login akan otomatis terkunci.
+• Jika Anda membutuhkan Kunci Lisensi baru atau perpanjangan, silakan hubungi 
+  WhatsApp Developer: 0821-9692-9193.
+
+
+================================================================================
+LANGKAH 6: CARA MENGGANTI GAMBAR LOGO, BANNER, DAN LAGU
+================================================================================
+Jika Anda ingin mengganti gambar atau musik, buka folder:
+📁 Folder: assets
+
+1. Mengganti Logo Hotspot:
+   • Siapkan gambar logo Anda berformat PNG (latar belakang transparan).
+   • Beri nama file: "net_logo.png"
+   • Timpa/ganti file net_logo.png yang lama di folder assets.
+
+2. Mengganti Banner Promo:
+   • Siapkan gambar banner berukuran persegi panjang (format JPG).
+   • Beri nama file: "banner_hut81.jpg"
+   • Timpa/ganti file banner_hut81.jpg di folder assets.
+
+3. Mengganti Musik Sambutan:
+   • Siapkan file musik pendek (format MP3, durasi 5-15 detik).
+   • Beri nama file: "hari_merdeka.mp3"
+   • Timpa/ganti file hari_merdeka.mp3 di folder assets.
+
+
+================================================================================
+LANGKAH 7: MENERAPKAN PERUBAHAN KE ROUTER MIKROTIK
+================================================================================
+Setelah Anda selesai mengedit file config.js dan menyimpannya (Ctrl + S):
+
+1. Buka aplikasi Winbox di laptop/komputer Anda dan login ke MikroTik.
+2. Klik menu "Files" di sebelah kiri Winbox.
+3. Buka folder template Anda di komputer.
+4. Tarik (Drag & Drop) file "config.js" yang baru Anda edit ke dalam folder 
+   template di jendela Files Winbox (misal ke dalam folder: maleo-hotspot/js/).
+5. Selesai! Perubahan harga, nama, dan teks langsung aktif seketika di Wi-Fi Anda.
+
+================================================================================
+BUTUH BANTUAN TEKNIS / KONSULTASI SOFTWARE LAINNYA?
+Hubungi Pengembang Resmi:
+👨‍💻 Developer : Deni Indrayana
+🏢 Studio    : DN Apps • PT Berdikari Bangun Bangsa
+📱 WhatsApp  : 0821-9692-9193 (https://wa.me/6282196929193)
+🌐 Layanan   : Website, Aplikasi HP (Android/iOS), Billing Hotspot & Custom Software
+================================================================================
