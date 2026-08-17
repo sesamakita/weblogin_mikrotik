@@ -52,27 +52,27 @@
 
         <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
           <span style="color: var(--md-sys-color-on-surface-variant);">Username Akun</span>
-          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;">$(username)</span>
+          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;" id="logoutUser">$(username)</span>
         </div>
 
         <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
           <span style="color: var(--md-sys-color-on-surface-variant);">Durasi Terhubung</span>
-          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;">$(uptime)</span>
+          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;" id="logoutUptime">$(uptime)</span>
         </div>
 
         <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
           <span style="color: var(--md-sys-color-on-surface-variant);">Total Download</span>
-          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;">$(bytes-in-nice)</span>
+          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;" id="logoutDown">$(bytes-in-nice)</span>
         </div>
 
         <div style="display: flex; justify-content: space-between; font-size: 0.82rem; padding: 8px 0;">
           <span style="color: var(--md-sys-color-on-surface-variant);">Total Upload</span>
-          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;">$(bytes-out-nice)</span>
+          <span style="color: var(--md-sys-color-on-surface); font-weight: 600;" id="logoutUp">$(bytes-out-nice)</span>
         </div>
       </div>
 
       <!-- Tombol Login Kembali (M3 Pill) -->
-      <a href="$(link-login)" class="btn-primary" style="text-decoration: none; justify-content: center;">
+      <a href="$(link-login)" class="btn-primary" id="btnLoginAgain" style="text-decoration: none; justify-content: center;">
         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         Login Kembali ke Jaringan
       </a>
@@ -88,14 +88,46 @@
       if (brandNameEl) brandNameEl.textContent = HOTSPOT_CONFIG.brand.name || 'MALEO HOTSPOT';
     }
 
-    // Safety Navigation Fallback
+    // Dynamic Summary & Safety Navigation Fallback
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('a').forEach(a => {
-        const href = a.getAttribute('href');
-        if (href && href.startsWith('$(') && href.includes('$(link-login)')) {
-          a.href = 'login.html';
+      const urlParams = new URLSearchParams(window.location.search);
+      let user = urlParams.get('username');
+      let uptime = urlParams.get('uptime');
+      let down = urlParams.get('down');
+      let up = urlParams.get('up');
+
+      if (!user) {
+        try { user = sessionStorage.getItem('hotspot_demo_user'); } catch(e) {}
+      }
+      user = user || 'MALEO-GUEST';
+
+      const userEl = document.getElementById('logoutUser');
+      if (userEl && (userEl.textContent.includes('$(') || userEl.textContent.trim() === '')) {
+        userEl.textContent = user;
+      }
+
+      const uptimeEl = document.getElementById('logoutUptime');
+      if (uptimeEl && (uptimeEl.textContent.includes('$(') || uptimeEl.textContent.trim() === '')) {
+        uptimeEl.textContent = uptime || '00:15:32';
+      }
+
+      const downEl = document.getElementById('logoutDown');
+      if (downEl && (downEl.textContent.includes('$(') || downEl.textContent.trim() === '')) {
+        downEl.textContent = down || '24.8 MB';
+      }
+
+      const upEl = document.getElementById('logoutUp');
+      if (upEl && (upEl.textContent.includes('$(') || upEl.textContent.trim() === '')) {
+        upEl.textContent = up || '5.2 MB';
+      }
+
+      const loginAgainBtn = document.getElementById('btnLoginAgain');
+      if (loginAgainBtn) {
+        const href = loginAgainBtn.getAttribute('href');
+        if (href && href.startsWith('$(')) {
+          loginAgainBtn.href = 'login.html';
         }
-      });
+      }
     });
   </script>
 </body>

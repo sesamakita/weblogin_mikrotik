@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabNavigation();
   initLoginModeSwitcher();
   initLoginButtonWatcher();
+  initSampleVoucherCodes();
+  initDemoFormSimulation();
   initFaqAccordion();
 });
 
@@ -449,4 +451,56 @@ function initLoginButtonWatcher() {
 
   // Initial check on page load
   updateButtonState();
+}
+
+/**
+ * 9. Tombol Contoh / Pilihan Cepat Kode Voucher
+ */
+function initSampleVoucherCodes() {
+  const sampleBtns = document.querySelectorAll('.btn-sample-code');
+  const inputUsername = document.getElementById('inputUsername');
+  const inputPassword = document.getElementById('inputPassword');
+  const btnVoucher = document.getElementById('btnModeVoucher');
+
+  sampleBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const code = btn.getAttribute('data-code');
+      if (code && inputUsername) {
+        // Pastikan mode voucher aktif
+        if (btnVoucher && !btnVoucher.classList.contains('active')) {
+          btnVoucher.click();
+        }
+        inputUsername.value = code;
+        if (inputPassword) inputPassword.value = code;
+        inputUsername.focus();
+        // Trigger event input agar tombol Masuk otomatis aktif
+        inputUsername.dispatchEvent(new Event('input'));
+      }
+    });
+  });
+}
+
+/**
+ * 10. Form Login Simulation Handler (Demo / Web Preview)
+ */
+function initDemoFormSimulation() {
+  const form = document.querySelector('form[name="sendin"]');
+  const inputUsername = document.getElementById('inputUsername');
+
+  if (!form || !inputUsername) return;
+
+  form.addEventListener('submit', (e) => {
+    const act = form.getAttribute('action') || '';
+    // Jika berjalan di preview web non-MikroTik
+    if (act.includes('$(') || act === '#' || location.hostname.includes('vercel.app') || location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+      e.preventDefault();
+      const user = inputUsername.value.trim() || 'MALEO-GUEST';
+      try {
+        sessionStorage.setItem('hotspot_demo_user', user);
+        sessionStorage.setItem('hotspot_login_time', Date.now().toString());
+      } catch (err) {}
+      window.location.href = `alogin.html?username=${encodeURIComponent(user)}`;
+    }
+  });
 }

@@ -482,6 +482,43 @@ h1, h2, h3, h4, .font-display {
   gap: 4px;
 }
 
+/* Ilustrasi / Pilihan Cepat Kode Voucher */
+.sample-vouchers-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.sample-title {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.btn-sample-code {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all var(--md-motion-duration) var(--md-motion-easing);
+}
+
+.btn-sample-code:hover, .btn-sample-code:active {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+  transform: translateY(-1px);
+}
+
 /* Scan QR Icon Button (Bersih Tanpa Latar Pembungkus) */
 .btn-scan-qr {
   position: absolute;

@@ -6,24 +6,54 @@
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="expires" content="-1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Mengarahkan...</title>
+  <title>Login Berhasil - Maleo Hotspot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script>
     function startRedirect() {
-      location.href = '$(link-redirect)';
+      const target = '$(link-redirect)';
+      if (target && !target.includes('$(')) {
+        location.href = target;
+      } else {
+        const urlParams = new URLSearchParams(window.location.search);
+        let user = urlParams.get('username');
+        if (!user) {
+          try { user = sessionStorage.getItem('hotspot_demo_user'); } catch(e) {}
+        }
+        user = user || 'MALEO-GUEST';
+        setTimeout(() => {
+          location.href = `status.html?username=${encodeURIComponent(user)}`;
+        }, 900);
+      }
     }
   </script>
 </head>
 <body onload="startRedirect()">
   <div class="app-container" style="justify-content: center; align-items: center; text-align: center; padding: 24px;">
     <div class="login-card" style="width: 100%; text-align: center; padding: 32px 20px;">
-      <div class="status-dot" style="width: 16px; height: 16px; margin: 0 auto 16px auto;"></div>
-      <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--md-sys-color-on-surface); margin-bottom: 8px;">Login Berhasil!</h2>
-      <p style="font-size: 0.82rem; color: var(--md-sys-color-on-surface-variant); margin-bottom: 20px;">Sedang mengalihkan ke halaman tujuan...</p>
-      <a href="$(link-redirect)" class="btn-primary" style="text-decoration: none; justify-content: center;">
-        Klik Jika Tidak Teralihkan
+      <div class="status-dot" style="width: 18px; height: 18px; margin: 0 auto 16px auto; box-shadow: 0 0 12px #22c55e;"></div>
+      <h2 style="font-size: 1.2rem; font-weight: 800; color: var(--md-sys-color-on-surface); margin-bottom: 8px;">Koneksi Berhasil! 🚀</h2>
+      <p style="font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant); margin-bottom: 20px;" id="redirectMsg">Sedang membuka sesi status internet...</p>
+      <a href="status.html" id="btnManualRedirect" class="btn-primary" style="text-decoration: none; justify-content: center;">
+        Buka Status Internet
       </a>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let user = urlParams.get('username');
+      if (!user) {
+        try { user = sessionStorage.getItem('hotspot_demo_user'); } catch(e) {}
+      }
+      if (user) {
+        document.getElementById('redirectMsg').textContent = `Selamat datang, ${user}! Sedang membuka sesi internet...`;
+        document.getElementById('btnManualRedirect').href = `status.html?username=${encodeURIComponent(user)}`;
+      }
+    });
+  </script>
 </body>
 </html>
