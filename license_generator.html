@@ -234,9 +234,9 @@
     // Developer Secret Salt (Sangat Rahasia & Khusus DN Apps)
     const DEV_SECRET_SALT = "DNA_PT_BERDIKARI_2026_!#%";
 
-    // Set default date to +14 days for trial
+    // Set default date to +7 days for trial (Masa Uji Coba 7 Hari)
     const d = new Date();
-    d.setDate(d.getDate() + 14);
+    d.setDate(d.getDate() + 7);
     document.getElementById('expiryDate').value = d.toISOString().split('T')[0];
 
     const typeSelect = document.getElementById('licenseType');

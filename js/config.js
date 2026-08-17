@@ -120,9 +120,9 @@ const HOTSPOT_CONFIG = {
   // Dilindungi Tanda Tangan Kriptografi Anti-Modifikasi
   // =========================================================================
   license: {
-    status: "active",
+    status: "trial", // Mode Uji Coba 7 Hari
     clientName: "Maleo Hotspot",
-    expiryDate: "LIFETIME",
-    licenseKey: "DNA-75AB-8BC6-2B22" // Kunci Resmi Full Version
+    expiryDate: "2026-08-24", // Masa trial 7 hari (s/d 24 Agustus 2026)
+    licenseKey: "DNA-05D9-1069-F7FE" // Kunci Valid 7 Hari Resmi dari DN Apps
   }
 };
