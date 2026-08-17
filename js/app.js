@@ -99,6 +99,9 @@ function initAppConfig() {
   // Render FAQ
   renderFaqs(cfg.faqs);
 
+  // Render Developer Profile & Services
+  renderDeveloperShowcase(cfg.developer);
+
   // Set CS Links & Quick Actions
   const csWaBtn = document.getElementById('csWaBtn');
   const csTgBtn = document.getElementById('csTgBtn');
@@ -316,6 +319,47 @@ function renderFaqs(faqs) {
 
     container.appendChild(item);
   });
+}
+
+/**
+ * 4b. Render Profil Pengembang & Portofolio Produk (DN Apps • PT Berdikari Bangun Bangsa)
+ */
+function renderDeveloperShowcase(dev) {
+  if (!dev) return;
+
+  const brandEl = document.getElementById('devBrandName');
+  const companyEl = document.getElementById('devCompanyName');
+  const authorEl = document.getElementById('devAuthorName');
+  const taglineEl = document.getElementById('devTagline');
+  const servicesGrid = document.getElementById('devServicesGrid');
+  const contactBtn = document.getElementById('devContactBtn');
+
+  if (brandEl) brandEl.textContent = dev.brand || 'DN Apps';
+  if (companyEl) companyEl.textContent = dev.company || 'PT Berdikari Bangun Bangsa';
+  if (authorEl) authorEl.textContent = dev.name || 'Deni Indrayana';
+  if (taglineEl) taglineEl.textContent = `💡 ${dev.tagline || 'Solusi Transformasi Digital & Pembuatan Software Profesional'}`;
+
+  if (servicesGrid && dev.services) {
+    servicesGrid.innerHTML = '';
+    dev.services.forEach(srv => {
+      const item = document.createElement('div');
+      item.className = 'dev-service-item';
+      item.innerHTML = `
+        <div class="dev-service-header">
+          <span class="dev-service-icon">${srv.icon}</span>
+          <span class="dev-service-name">${srv.title}</span>
+        </div>
+        <div class="dev-service-desc">${srv.desc}</div>
+      `;
+      servicesGrid.appendChild(item);
+    });
+  }
+
+  if (contactBtn) {
+    const waNumber = formatWhatsAppNumber(dev.whatsApp || '6281234567890');
+    const msg = encodeURIComponent(`Halo Mas ${dev.name} (${dev.brand} - ${dev.company}), saya ingin konsultasi terkait pembuatan Website / Aplikasi / Software.`);
+    contactBtn.href = `https://wa.me/${waNumber}?text=${msg}`;
+  }
 }
 
 /**
