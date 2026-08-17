@@ -563,21 +563,8 @@ function initAudioPlayer() {
   audio.addEventListener('pause', updateUiState);
   audio.addEventListener('playing', updateUiState);
 
-  // Putar seketika saat script dimuat
+  // Putar seketika saat halaman dibuka (jika diizinkan oleh sistem browser)
   playAudio();
-
-  // Pemicu instan pada sentuhan / pergerakan / interaksi pertama pengguna
-  const triggerInstantPlay = () => {
-    if (audio.paused) {
-      playAudio();
-    }
-  };
-
-  ['click', 'touchstart', 'touchend', 'pointerdown', 'pointermove', 'mousedown', 'scroll', 'keydown'].forEach(ev => {
-    window.addEventListener(ev, triggerInstantPlay, { once: true, capture: true, passive: true });
-    document.addEventListener(ev, triggerInstantPlay, { once: true, capture: true, passive: true });
-  });
-
   window.addEventListener('load', playAudio);
   window.addEventListener('pageshow', playAudio);
 }
