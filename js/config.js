@@ -5,11 +5,11 @@
 const HOTSPOT_CONFIG = {
   // Informasi Brand & Bisnis
   brand: {
-    name: "NETSPEED HOTSPOT 🇮🇩",
+    name: "MALEO HOTSPOT 🇮🇩",
     tagline: "Edisi Spesial HUT RI Ke-81",
-    logoText: "NetSpeed",
+    logoText: "Maleo",
     csWhatsApp: "6281234567890", // Ganti dengan nomor WhatsApp Admin (awali dengan 62)
-    csTelegram: "admin_netspeed", // Username Telegram (opsional)
+    csTelegram: "admin_maleo", // Username Telegram (opsional)
     runningText: "🇮🇩 Dirgahayu Republik Indonesia! Nikmati Promo Merdeka Super Cepat & Kuota Unlimited Sepuasnya! 🇮🇩"
   },
 
