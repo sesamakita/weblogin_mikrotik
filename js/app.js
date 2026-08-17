@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   cleanupPreviewTags();
   initAppConfig();
+  initTemplateLicenseCheck();
   initTabNavigation();
   initLoginModeSwitcher();
   initLoginButtonWatcher();
@@ -657,4 +658,66 @@ function initAudioPlayer() {
       });
     }
   });
+}
+
+/**
+ * 12. Sistem Kontrol Lisensi & Masa Uji Coba Template (DN Apps • Deni Indrayana)
+ */
+function initTemplateLicenseCheck() {
+  if (typeof HOTSPOT_CONFIG === 'undefined') return;
+  const lic = HOTSPOT_CONFIG.license;
+  const dev = HOTSPOT_CONFIG.developer || {};
+  if (!lic) return;
+
+  const trialBanner = document.getElementById('trialLicenseBanner');
+  const trialText = document.getElementById('trialBannerText');
+  const trialBtn = document.getElementById('trialActivateBtn');
+  const expiredModal = document.getElementById('licenseExpiredModal');
+  const expiredWaBtn = document.getElementById('licenseWaContactBtn');
+
+  const waDevNumber = formatWhatsAppNumber(dev.whatsApp || '6282196929193');
+
+  // 1. Jika Status "active" (Lisensi Full / Berlangganan Aktif)
+  if (lic.status === 'active') {
+    if (trialBanner) trialBanner.style.display = 'none';
+    if (expiredModal) expiredModal.style.display = 'none';
+    return;
+  }
+
+  // 2. Jika Status "trial" (Mode Uji Coba)
+  if (lic.status === 'trial') {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const expiry = new Date(lic.expiryDate || '2026-08-31');
+    expiry.setHours(23, 59, 59, 999);
+
+    const diffTime = expiry.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays >= 0) {
+      // Masih Dalam Masa Trial: Tampilkan Indikator Sisa Hari
+      if (trialBanner) {
+        trialBanner.style.display = 'flex';
+        if (trialText) {
+          trialText.textContent = `Mode Uji Coba (Sisa ${diffDays} Hari) • DN Apps`;
+        }
+        if (trialBtn) {
+          const msg = encodeURIComponent(`Halo Mas Deni Indrayana (${dev.brand || 'DN Apps'}), saya owner ${lic.clientName || 'Hotspot'} ingin melakukan aktivasi Lisensi Penuh / Berlangganan template hotspot.`);
+          trialBtn.href = `https://wa.me/${waDevNumber}?text=${msg}`;
+        }
+      }
+      if (expiredModal) expiredModal.style.display = 'none';
+    } else {
+      // Masa Trial TELAH KEDALUWARSA: Kunci Layar (Lock Screen)
+      if (trialBanner) trialBanner.style.display = 'none';
+      if (expiredModal) {
+        expiredModal.style.display = 'flex';
+        if (expiredWaBtn) {
+          const msg = encodeURIComponent(`Halo Mas Deni Indrayana (${dev.brand || 'DN Apps'}), masa uji coba template hotspot (${lic.clientName || 'Hotspot'}) telah habis. Saya ingin mengaktifkan lisensi full.`);
+          expiredWaBtn.href = `https://wa.me/${waDevNumber}?text=${msg}`;
+        }
+      }
+    }
+  }
 }

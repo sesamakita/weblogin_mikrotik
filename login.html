@@ -16,6 +16,15 @@
   <!-- App Shell Container (Material You Surface) -->
   <div class="app-container has-bottom-nav">
 
+    <!-- Floating Trial License Indicator Bar (Muncul otomatis jika status: "trial") -->
+    <div id="trialLicenseBanner" class="trial-license-banner" style="display: none;">
+      <div class="trial-banner-info">
+        <span class="trial-badge-dot"></span>
+        <span class="trial-banner-text" id="trialBannerText">Mode Uji Coba (Sisa 14 Hari)</span>
+      </div>
+      <a href="#" id="trialActivateBtn" class="btn-trial-activate" target="_blank">Aktivasi Full ⚡</a>
+    </div>
+
     <!-- Top App Bar / Header -->
     <header class="app-header">
       <div class="header-top">
@@ -356,6 +365,31 @@
       </section>
 
     </main>
+
+    <!-- Modal Layar Kunci Saat Masa Uji Coba Habis (License Expired Lock Screen) -->
+    <div id="licenseExpiredModal" class="license-expired-modal" style="display: none;">
+      <div class="license-modal-backdrop"></div>
+      <div class="license-modal-card">
+        <div class="license-lock-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+        </div>
+        <h2 class="license-modal-title">Masa Uji Coba Berakhir</h2>
+        <p class="license-modal-desc">
+          Masa trial template web login hotspot ini telah habis. Untuk mengaktifkan lisensi penuh (*Full Version*) atau memperpanjang langganan, silakan hubungi pengembang:
+        </p>
+
+        <div class="license-dev-box">
+          <div class="license-dev-brand">DN Apps • PT Berdikari Bangun Bangsa</div>
+          <div class="license-dev-lead">Developer: <strong>Deni Indrayana</strong></div>
+          <div class="license-dev-wa">WhatsApp: <strong>0821-9692-9193</strong></div>
+        </div>
+
+        <a href="#" id="licenseWaContactBtn" class="btn-license-wa" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+          Aktivasi Lisensi Full via WhatsApp
+        </a>
+      </div>
+    </div>
 
     <!-- Material 3 Navigation Bar with New Specialized Vector Icons -->
     <nav class="bottom-nav">
