@@ -27,5 +27,16 @@
       </a>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && href.startsWith('$(') && href.includes('$(link-login)')) {
+          a.href = 'login.html';
+        }
+      });
+    });
+  </script>
 </body>
 </html>

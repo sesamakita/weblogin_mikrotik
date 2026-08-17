@@ -8,6 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
+ * Format Nomor WhatsApp ke Standar Internasional (62...)
+ */
+function formatWhatsAppNumber(phone) {
+  if (!phone) return '';
+  let clean = String(phone).replace(/[^0-9]/g, '');
+  if (clean.startsWith('0')) {
+    clean = '62' + clean.slice(1);
+  }
+  return clean;
+}
+
+/**
  * Pembersih tag MikroTik mentah jika dibuka di peramban web biasa / Vercel
  */
 function cleanupPreviewTags() {
@@ -36,6 +48,25 @@ function cleanupPreviewTags() {
       if (node.nodeValue === '$(username)') node.nodeValue = '';
     }
   }
+
+  // Fallback Navigasi Aman untuk Preview Web Non-RouterOS
+  document.querySelectorAll('a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href && href.startsWith('$(')) {
+      if (href.includes('$(link-login)')) a.href = 'login.html';
+      else if (href.includes('$(link-status)')) a.href = 'status.html';
+      else if (href.includes('$(link-logout)')) a.href = 'logout.html';
+      else if (href.includes('$(link-login-only)')) a.href = '#';
+    }
+  });
+
+  document.querySelectorAll('form').forEach(f => {
+    const act = f.getAttribute('action');
+    if (act && act.startsWith('$(')) {
+      if (act.includes('$(link-logout)')) f.action = 'logout.html';
+      else if (act.includes('$(link-login)')) f.action = 'status.html';
+    }
+  });
 }
 
 /**
@@ -45,6 +76,7 @@ function initAppConfig() {
   if (typeof HOTSPOT_CONFIG === 'undefined') return;
 
   const cfg = HOTSPOT_CONFIG;
+  const waNumber = formatWhatsAppNumber(cfg.brand.csWhatsApp);
 
   // Render Brand & Header Info
   const brandNameEl = document.getElementById('brandName');
@@ -56,7 +88,7 @@ function initAppConfig() {
   if (runningTextEl) runningTextEl.textContent = cfg.brand.runningText || '';
 
   // Render Paket Internet
-  renderPackages(cfg.packages, cfg.brand.csWhatsApp, cfg.brand.name);
+  renderPackages(cfg.packages, waNumber, cfg.brand.name);
 
   // Render Outlet / Agen
   renderOutlets(cfg.outlets);
@@ -69,11 +101,19 @@ function initAppConfig() {
   const csTgBtn = document.getElementById('csTgBtn');
   const qaContactCs = document.getElementById('qaContactCs');
 
-  if (cfg.brand.csWhatsApp) {
+  if (waNumber) {
     const waText = encodeURIComponent(`Halo Admin ${cfg.brand.name}, saya butuh bantuan terkait koneksi Hotspot.`);
-    const waUrl = `https://wa.me/${cfg.brand.csWhatsApp}?text=${waText}`;
+    const waUrl = `https://wa.me/${waNumber}?text=${waText}`;
     if (csWaBtn) csWaBtn.href = waUrl;
-    if (qaContactCs) qaContactCs.href = waUrl;
+    if (qaContactCs) {
+      qaContactCs.href = waUrl;
+      qaContactCs.target = '_blank';
+    }
+  } else if (qaContactCs) {
+    qaContactCs.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab('tab-help');
+    });
   }
 
   if (csTgBtn && cfg.brand.csTelegram) {
@@ -85,7 +125,16 @@ function initAppConfig() {
   if (featuredPromoBtn && cfg.packages && cfg.packages.length > 0) {
     const popularPkt = cfg.packages.find(p => p.popular) || cfg.packages[0];
     const waMsg = encodeURIComponent(`Halo Admin ${cfg.brand.name}, saya ingin pesan promo *${popularPkt.name}* (Harga: Rp ${Number(popularPkt.price).toLocaleString('id-ID')}). Mohon infonya ya.`);
-    featuredPromoBtn.href = `https://wa.me/${cfg.brand.csWhatsApp}?text=${waMsg}`;
+    if (waNumber) {
+      featuredPromoBtn.href = `https://wa.me/${waNumber}?text=${waMsg}`;
+      featuredPromoBtn.target = '_blank';
+    } else {
+      featuredPromoBtn.href = '#';
+      featuredPromoBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        switchTab('tab-packages');
+      });
+    }
   }
 
   // Setup Quick Action Button Click Listeners
@@ -102,14 +151,21 @@ function initQuickActions() {
   const btnScanQrInput = document.getElementById('btnScanQrInput');
 
   if (qaTarif) {
-    qaTarif.addEventListener('click', () => switchTab('tab-packages'));
+    qaTarif.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab('tab-packages');
+    });
   }
 
   if (qaOutlet) {
-    qaOutlet.addEventListener('click', () => switchTab('tab-outlets'));
+    qaOutlet.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab('tab-outlets');
+    });
   }
 
-  const handleQrScan = () => {
+  const handleQrScan = (e) => {
+    if (e) e.preventDefault();
     const inputUsername = document.getElementById('inputUsername');
     const scannedCode = prompt('📷 Scan Kamera / Masukkan Kode Barcode Voucher:');
     if (scannedCode && scannedCode.trim() !== '') {
@@ -118,6 +174,8 @@ function initQuickActions() {
         const inputPassword = document.getElementById('inputPassword');
         if (inputPassword) inputPassword.value = scannedCode.trim();
         inputUsername.focus();
+        // Trigger event input agar tombol Masuk otomatis aktif
+        inputUsername.dispatchEvent(new Event('input'));
       }
     }
   };
@@ -130,6 +188,8 @@ function initQuickActions() {
  * Helper Fungsi Ganti Tab
  */
 function switchTab(targetTabId) {
+  if (!targetTabId) return;
+
   const navItems = document.querySelectorAll('.nav-item');
   const tabPanes = document.querySelectorAll('.tab-pane');
 

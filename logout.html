@@ -87,6 +87,16 @@
       const brandNameEl = document.getElementById('brandName');
       if (brandNameEl) brandNameEl.textContent = HOTSPOT_CONFIG.brand.name || 'MALEO HOTSPOT';
     }
+
+    // Safety Navigation Fallback
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && href.startsWith('$(') && href.includes('$(link-login)')) {
+          a.href = 'login.html';
+        }
+      });
+    });
   </script>
 </body>
 </html>
