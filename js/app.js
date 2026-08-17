@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLoginButtonWatcher();
   initSampleVoucherCodes();
   initDemoFormSimulation();
+  initAudioPlayer();
   initFaqAccordion();
 });
 
@@ -503,4 +504,63 @@ function initDemoFormSimulation() {
       window.location.href = `alogin.html?username=${encodeURIComponent(user)}`;
     }
   });
+}
+
+/**
+ * 11. Audio Player Jingle Kemerdekaan (Hari Merdeka) Handler
+ */
+function initAudioPlayer() {
+  const audio = document.getElementById('bgAudio');
+  const btnToggle = document.getElementById('btnSoundToggle');
+  if (!audio || !btnToggle) return;
+
+  const iconOn = btnToggle.querySelector('.icon-sound-on');
+  const iconOff = btnToggle.querySelector('.icon-sound-off');
+
+  let hasPlayedOnce = false;
+
+  function playAudio() {
+    audio.play().then(() => {
+      btnToggle.classList.add('playing');
+      if (iconOn) iconOn.style.display = 'block';
+      if (iconOff) iconOff.style.display = 'none';
+      hasPlayedOnce = true;
+    }).catch(err => {
+      // Browser autoplay prevented
+    });
+  }
+
+  function pauseAudio() {
+    audio.pause();
+    btnToggle.classList.remove('playing');
+    if (iconOn) iconOn.style.display = 'none';
+    if (iconOff) iconOff.style.display = 'block';
+  }
+
+  btnToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (audio.paused) {
+      playAudio();
+    } else {
+      pauseAudio();
+    }
+  });
+
+  audio.addEventListener('ended', () => {
+    btnToggle.classList.remove('playing');
+    if (iconOn) iconOn.style.display = 'block';
+    if (iconOff) iconOff.style.display = 'none';
+  });
+
+  // Auto-play halus pada sentuhan/interaksi pertama pengguna di layar HP
+  const startOnFirstInteraction = () => {
+    if (!hasPlayedOnce && audio.paused) {
+      playAudio();
+    }
+    document.removeEventListener('click', startOnFirstInteraction);
+    document.removeEventListener('touchstart', startOnFirstInteraction);
+  };
+
+  document.addEventListener('click', startOnFirstInteraction, { once: true });
+  document.addEventListener('touchstart', startOnFirstInteraction, { once: true });
 }
