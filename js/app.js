@@ -678,7 +678,8 @@ function initTemplateLicenseCheck() {
   const expiredWaBtn = document.getElementById('licenseWaContactBtn');
 
   const waDevNumber = formatWhatsAppNumber(dev.whatsApp || '6282196929193');
-  const DEV_SECRET_SALT = "DNA_PT_BERDIKARI_2026_!#%";
+  // Obfuscated Developer Secret Salt (Anti-Inspection)
+  const DEV_SECRET_SALT = atob("RE5BX1BUX0JFUkRJS0FSSV8yMDI2XyEjJQ==");
 
   const clientName = (lic.clientName || 'MALEO HOTSPOT').trim().toUpperCase();
   const status = (lic.status || 'trial').toLowerCase();
