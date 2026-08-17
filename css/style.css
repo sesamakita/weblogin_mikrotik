@@ -107,15 +107,15 @@ h1, h2, h3, h4, .font-display {
   overflow: hidden; /* Kunci agar header dan nav bar tetap diam */
 }
 
-/* Pelindung Fade Gradient Halus di Belakang Bottom Nav Bar */
-.app-container::after {
+/* Pelindung Fade Gradient Halus HANYA untuk Halaman dengan Bottom Nav Bar */
+.app-container.has-bottom-nav::after,
+.app-container:has(.bottom-nav)::after {
   content: '';
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: 460px;
   height: 84px; /* Tinggi presisi pas di area nav bar */
   background: linear-gradient(to top, #f8fafc 40%, rgba(248, 250, 252, 0.85) 75%, transparent 100%);
   backdrop-filter: blur(16px);
@@ -273,10 +273,18 @@ h1, h2, h3, h4, .font-display {
    ========================================================================== */
 .app-content {
   flex: 1;
-  padding: 16px 14px 110px 14px; /* 110px bawah memberikan jarak lega yang pas di atas floating nav bar */
+  padding: 16px 14px 24px 14px; /* Default 24px untuk halaman status, logout, error */
   overflow-y: auto;
+  overflow-x: hidden; /* Mencegah konten melebar / scroll horizontal */
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.has-bottom-nav .app-content,
+.app-container:has(.bottom-nav) .app-content {
+  padding-bottom: 110px; /* 110px hanya untuk halaman dengan floating bottom nav bar */
 }
 
 .tab-pane {
@@ -1274,18 +1282,22 @@ h1, h2, h3, h4, .font-display {
    ========================================================================== */
 .stats-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Mencegah kolom melebar / overflow horizontal */
+  gap: 10px;
+  margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .stat-box {
   background-color: #ffffff;
   border-radius: var(--md-shape-corner-lg);
-  padding: 16px 14px;
+  padding: 14px 10px;
   text-align: center;
   border: 1px solid var(--md-sys-color-outline-variant);
   box-shadow: var(--card-shadow);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .stat-box .stat-label {
@@ -1303,24 +1315,30 @@ h1, h2, h3, h4, .font-display {
   width: 15px;
   height: 15px;
   fill: var(--md-sys-color-primary);
+  flex-shrink: 0;
 }
 
 .stat-box .stat-val {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 0.98rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--md-sys-color-on-surface);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .user-badge-header {
   text-align: center;
-  padding: 20px;
+  padding: 18px 14px;
   background-color: #ffffff;
   border-radius: var(--md-shape-corner-xl);
   border: 1px solid var(--md-sys-color-outline-variant);
   box-shadow: var(--card-shadow);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  word-break: break-word;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .user-avatar {
