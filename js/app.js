@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAppConfig();
   initTabNavigation();
   initLoginModeSwitcher();
+  initLoginButtonWatcher();
   initFaqAccordion();
 });
 
@@ -345,4 +346,47 @@ function initFaqAccordion() {
       item.classList.add('active');
     }
   });
+}
+
+/**
+ * 8. Dynamic Login Button Dimmed State Watcher
+ * Redupkan tombol Masuk jika input voucher / member masih kosong
+ */
+function initLoginButtonWatcher() {
+  const btnLogin = document.getElementById('btnLogin');
+  const inputUsername = document.getElementById('inputUsername');
+  const inputPassword = document.getElementById('inputPassword');
+  const btnMember = document.getElementById('btnModeMember');
+  const btnVoucher = document.getElementById('btnModeVoucher');
+
+  if (!btnLogin || !inputUsername) return;
+
+  function updateButtonState() {
+    const isMember = btnMember && btnMember.classList.contains('active');
+    const hasUsername = inputUsername.value.trim().length > 0;
+    const hasPassword = inputPassword ? inputPassword.value.trim().length > 0 : true;
+
+    if (isMember) {
+      if (hasUsername && hasPassword) {
+        btnLogin.classList.remove('btn-dimmed');
+      } else {
+        btnLogin.classList.add('btn-dimmed');
+      }
+    } else {
+      if (hasUsername) {
+        btnLogin.classList.remove('btn-dimmed');
+      } else {
+        btnLogin.classList.add('btn-dimmed');
+      }
+    }
+  }
+
+  inputUsername.addEventListener('input', updateButtonState);
+  if (inputPassword) inputPassword.addEventListener('input', updateButtonState);
+
+  if (btnVoucher) btnVoucher.addEventListener('click', () => setTimeout(updateButtonState, 50));
+  if (btnMember) btnMember.addEventListener('click', () => setTimeout(updateButtonState, 50));
+
+  // Initial check on page load
+  updateButtonState();
 }
