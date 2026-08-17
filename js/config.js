@@ -115,64 +115,11 @@ const HOTSPOT_CONFIG = {
     }
   ],
 
-  // Informasi Pengembang & Jasa Pembuatan Aplikasi
-  developer: {
-    brand: "DN Apps",
-    company: "PT Berdikari Bangun Bangsa",
-    name: "Deni Indrayana",
-    role: "Fullstack Web & Mobile Developer",
-    whatsApp: "6282196929193", // Nomor WhatsApp Developer Deni Indrayana
-    email: "deni.indrayana@dnapps.id",
-    tagline: "Solusi Transformasi Digital & Pembuatan Software Profesional",
-    services: [
-      {
-        icon: "🌐",
-        title: "Website & Web Application",
-        desc: "Sistem Informasi, Portal Berita, Web Instansi/Sekolah & Toko Online E-Commerce modern."
-      },
-      {
-        icon: "🚀",
-        title: "Landing Page Interaktif",
-        desc: "Halaman promosi produk, Company Profile, Portofolio Bisnis & Sales Funnel berkecepatan tinggi."
-      },
-      {
-        icon: "📱",
-        title: "Aplikasi HP (Android & iOS)",
-        desc: "Aplikasi Mobile native/hybrid, Kasir POS, Tracking Kurir, Manajemen Anggota & Komunitas."
-      },
-      {
-        icon: "📶",
-        title: "Custom Template MikroTik & RT/RW Net",
-        desc: "Desain Web Login Hotspot responsif, Portal Billing Otomatis & Integrasi WhatsApp Gateway."
-      },
-      {
-        icon: "🤖",
-        title: "Bot WhatsApp & Telegram Otomatis",
-        desc: "Sistem Auto-Reply CS 24 Jam, Notifikasi Transaksi Pembayaran & Bot Pengecekan Tagihan."
-      },
-      {
-        icon: "💼",
-        title: "Sistem Kasir (POS) & Manajemen Toko",
-        desc: "Aplikasi kasir multi-cabang, cetak struk bluetooth thermal, kontrol stok & laporan laba rugi."
-      },
-      {
-        icon: "👥",
-        title: "Sistem Presensi & HRIS Karyawan",
-        desc: "Absensi GPS/Selfie radius kantor, manajemen cuti, shift kerja & rekap payroll otomatis."
-      },
-      {
-        icon: "🎨",
-        title: "UI/UX Design & Redesign Modern",
-        desc: "Desain antarmuka aplikasi berstandar Material 3, clean, interaktif & berorientasi konversi tinggi."
-      }
-    ]
-  },
-
   // =========================================================================
   // SISTEM LISENSI RESMI PENGEMBANG (DN APPS / DENI INDRAYANA)
   // Dilindungi Tanda Tangan Kriptografi Anti-Modifikasi
   // =========================================================================
-    license: {
+  license: {
     status: "active",
     clientName: "Maleo Hotspot",
     expiryDate: "LIFETIME",
