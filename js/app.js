@@ -571,38 +571,46 @@ function initAudioPlayer() {
   // Coba putar otomatis saat halaman dibuka jika diizinkan browser
   playAudio();
 
-  // Pemicu Khusus: 1. Klik/Fokus di Kolom Voucher | 2. Skrol Halaman
+  // Pemicu Khusus: 1. Klik/Fokus di Kolom Voucher | 2. Skrol/Swipe di Area Konten
   const inputUsername = document.getElementById('inputUsername');
   const inputPassword = document.getElementById('inputPassword');
   const loginCard = document.querySelector('.login-card');
   const appContent = document.querySelector('.app-content');
 
-  const onUserActionTrigger = () => {
+  // 1. Pemicu saat kolom voucher disentuh, diklik, atau difokuskan
+  const onVoucherFocusTrigger = () => {
     if (audio.paused && !manualPaused) {
       playAudio();
     }
   };
 
-  // 1. Pemicu saat kolom voucher diklik, disentuh, atau difokuskan
   if (inputUsername) {
-    inputUsername.addEventListener('focus', onUserActionTrigger);
-    inputUsername.addEventListener('click', onUserActionTrigger);
-    inputUsername.addEventListener('touchstart', onUserActionTrigger, { passive: true });
-    inputUsername.addEventListener('input', onUserActionTrigger);
+    ['focus', 'click', 'touchstart', 'pointerdown', 'input'].forEach(ev => {
+      inputUsername.addEventListener(ev, onVoucherFocusTrigger, { passive: true });
+    });
   }
   if (inputPassword) {
-    inputPassword.addEventListener('focus', onUserActionTrigger);
-    inputPassword.addEventListener('click', onUserActionTrigger);
+    ['focus', 'click', 'touchstart', 'pointerdown'].forEach(ev => {
+      inputPassword.addEventListener(ev, onVoucherFocusTrigger, { passive: true });
+    });
   }
   if (loginCard) {
-    loginCard.addEventListener('click', onUserActionTrigger);
+    loginCard.addEventListener('touchstart', onVoucherFocusTrigger, { passive: true });
+    loginCard.addEventListener('click', onVoucherFocusTrigger);
   }
 
-  // 2. Pemicu saat pengguna melakukan skrol konten/halaman
-  if (appContent) {
-    appContent.addEventListener('scroll', onUserActionTrigger, { passive: true });
-    appContent.addEventListener('touchmove', onUserActionTrigger, { passive: true });
-    appContent.addEventListener('wheel', onUserActionTrigger, { passive: true });
-  }
-  window.addEventListener('scroll', onUserActionTrigger, { passive: true });
+  // 2. Pemicu saat pengguna menggeser/mengusap layar (skrol) di area konten
+  const onScrollGestureTrigger = () => {
+    if (audio.paused && !manualPaused) {
+      playAudio();
+    }
+  };
+
+  [appContent, document.body, window, document].forEach(target => {
+    if (target) {
+      ['touchstart', 'touchmove', 'pointerdown', 'scroll', 'wheel'].forEach(ev => {
+        target.addEventListener(ev, onScrollGestureTrigger, { capture: true, passive: true });
+      });
+    }
+  });
 }
