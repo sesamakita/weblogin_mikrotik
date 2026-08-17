@@ -507,7 +507,7 @@ function initDemoFormSimulation() {
 }
 
 /**
- * 11. Audio Player Jingle Kemerdekaan (Hari Merdeka) Handler
+ * 11. Audio Player Jingle Kemerdekaan (Hari Merdeka) Handler (Looping & Pausable)
  */
 function initAudioPlayer() {
   const audio = document.getElementById('bgAudio');
@@ -517,16 +517,15 @@ function initAudioPlayer() {
   const iconOn = btnToggle.querySelector('.icon-sound-on');
   const iconOff = btnToggle.querySelector('.icon-sound-off');
 
-  let hasPlayedOnce = false;
+  audio.loop = true; // Putar berulang secara mulus
 
   function playAudio() {
     audio.play().then(() => {
       btnToggle.classList.add('playing');
       if (iconOn) iconOn.style.display = 'block';
       if (iconOff) iconOff.style.display = 'none';
-      hasPlayedOnce = true;
     }).catch(err => {
-      // Browser autoplay prevented
+      // Browser autoplay policy prevented, will trigger on user interaction
     });
   }
 
@@ -546,21 +545,17 @@ function initAudioPlayer() {
     }
   });
 
-  audio.addEventListener('ended', () => {
-    btnToggle.classList.remove('playing');
-    if (iconOn) iconOn.style.display = 'block';
-    if (iconOff) iconOff.style.display = 'none';
-  });
+  // Coba putar langsung saat halaman pertama kali terbuka
+  playAudio();
 
-  // Auto-play halus pada sentuhan/interaksi pertama pengguna di layar HP
+  // Fallback: Putar pada sentuhan/interaksi pertama pengguna jika browser memblokir autoplay instan
   const startOnFirstInteraction = () => {
-    if (!hasPlayedOnce && audio.paused) {
+    if (audio.paused) {
       playAudio();
     }
-    document.removeEventListener('click', startOnFirstInteraction);
-    document.removeEventListener('touchstart', startOnFirstInteraction);
   };
 
-  document.addEventListener('click', startOnFirstInteraction, { once: true });
-  document.addEventListener('touchstart', startOnFirstInteraction, { once: true });
+  ['click', 'touchstart', 'scroll', 'pointerdown', 'keydown'].forEach(ev => {
+    document.addEventListener(ev, startOnFirstInteraction, { once: true, passive: true });
+  });
 }
